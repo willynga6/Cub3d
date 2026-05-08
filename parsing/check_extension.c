@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/07 08:40:40 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/08 10:01:58 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ static bool	check_extension(char *str)
 		return (false);
 }
 
-
-
 /*	================================================================	*/
 
 bool	is_valid_extension(t_parsing *parsing)
@@ -86,5 +84,3 @@ bool	is_valid_extension(t_parsing *parsing)
 	else
 		return (true);
 }
-
-/*	================================================================	*/

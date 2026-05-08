@@ -16,9 +16,13 @@ GNL = get_next_line
 
 SRCS = main.c \
 	$(TOOLSDIR)/tools1.c \
+	$(TOOLSDIR)/tools2.c \
 	$(PARSINGDIR)/check_extension.c \
 	$(PARSINGDIR)/check_the_mapfile_format.c \
+	$(PARSINGDIR)/check_the_mapfile_format2.c \
+	$(PARSINGDIR)/check_the_mapfile_format3.c \
 	$(PARSINGDIR)/init_parsing.c \
+	$(PARSINGDIR)/init_parsing2.c \
 	$(GNL)/get_next_line.c \
 	$(GNL)/get_next_line_utils.c \
 	$(CLEANDIR)/malloc.c

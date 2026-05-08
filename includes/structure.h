@@ -6,30 +6,38 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/07 08:49:24 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/08 12:45:26 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
-# include "cub3D.h"
+# include <stdbool.h>
 
 /*	================================================================	*/
 
+typedef struct s_malloc	t_malloc;
+
 typedef struct s_parsing
 {
-	int		ac;
-	char	*maps_path;
-	int		fd_map;
-	bool	contain_no_texture;
-	bool	contain_so_texture;
-	bool	contain_we_texture;
-	bool	contain_ea_texture;
-	bool	am_i_in_map;
-	bool	am_i_in_color;
-	bool	am_i_in_texture;
-
+	int			ac;
+	char		*maps_path;
+	char		**maps;
+	t_malloc	**lst_malloc;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	int			fd_map;
+	int			nb_lines;
+	bool		contain_no_texture;
+	bool		contain_so_texture;
+	bool		contain_we_texture;
+	bool		contain_ea_texture;
+	bool		am_i_in_map;
+	bool		am_i_in_color;
+	bool		am_i_in_texture;
 }	t_parsing;
 
 /*	================================================================	*/
