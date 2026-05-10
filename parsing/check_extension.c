@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 10:01:58 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 09:45:47 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	extension_error_msg(void)
 {
-	printf ("Error: map extension has to be .cub\n");
+	print_error("Error: map extension has to be .cub");
 }
 
 /*	================================================================	*/
@@ -51,7 +51,7 @@ static bool	check_extension(char *str)
 	i = 0;
 	if (!str)
 	{
-		printf ("Error: MAP Addresse not found\n");
+		print_error("Error: MAP Addresse not found");
 		return (false);
 	}
 	while (str[i])
@@ -72,7 +72,7 @@ bool	is_valid_extension(t_parsing *parsing)
 
 	if (!parsing)
 	{
-		printf ("Error: bad structure adress\n");
+		print_error("Error: bad structure adress");
 		return (false);
 	}
 	path_map = parsing->maps_path;

@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 07:17:12 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 12:18:09 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 10:06:09 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	init_int_value(int ac, char **av, t_parsing *parsing,
 {
 	if (!parsing || !av)
 	{
-		printf ("Error: bad structure adress\n");
+		print_error("Error: bad structure adress");
 		return (false);
 	}
 	if (ac != 2)
@@ -54,20 +54,22 @@ static bool	init_char_value(char **av, t_parsing *parsing,
 {
 	if (!parsing || !av)
 	{
-		printf ("Error: bad structure adress\n");
+		print_error("Error: bad structure adress");
 		return (false);
 	}
 	parsing->maps_path = av[1];
 	parsing->maps = get_maps(parsing, lst_malloc);
 	if (!parsing->maps)
 	{
-		printf("Error: failed to get the maps\n");
+		print_error("Error: failed to get the maps");
 		return (false);
 	}
 	parsing->no_texture = NULL;
 	parsing->so_texture = NULL;
 	parsing->we_texture = NULL;
 	parsing->ea_texture = NULL;
+	parsing->f_color = NULL;
+	parsing->c_color = NULL;
 	return (true);
 }
 
@@ -79,6 +81,8 @@ static void	init_bool_value(t_parsing *parsing)
 	parsing->contain_so_texture = false;
 	parsing->contain_we_texture = false;
 	parsing->contain_ea_texture = false;
+	parsing->contain_f_color = false;
+	parsing->contain_c_color = false;
 	parsing->am_i_in_map = false;
 	parsing->am_i_in_color = false;
 	parsing->am_i_in_texture = false;

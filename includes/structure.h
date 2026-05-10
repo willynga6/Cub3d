@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 12:45:26 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 10:06:09 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ typedef struct s_parsing
 	char		*we_texture;
 	char		*ea_texture;
 	int			fd_map;
+	char		*f_color;
+	char		*c_color;
 	int			nb_lines;
 	bool		contain_no_texture;
 	bool		contain_so_texture;
 	bool		contain_we_texture;
 	bool		contain_ea_texture;
 	bool		am_i_in_map;
+	bool		contain_f_color;
+	bool		contain_c_color;
 	bool		am_i_in_color;
 	bool		am_i_in_texture;
 }	t_parsing;

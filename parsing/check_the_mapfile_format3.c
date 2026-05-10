@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 11:21:44 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 12:43:39 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 09:45:47 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,68 +16,72 @@
 
 /*	================================================================	*/
 
-bool	double_no_texture(t_parsing *parsing, char *line, int *i)
+bool	double_no_texture(t_parsing *parsing, char *line)
 {
-	if (is_no_texture_part(line, i))
+	if (!parsing || !line)
+		return (false);
+	if (is_no_texture_part(line))
 	{
 		if (parsing->contain_no_texture)
 		{
-			printf ("Error: double NO texture\n");
+			print_error("Error: double NO texture");
 			return (true);
 		}
 		parsing->contain_no_texture = true;
-		return (true);
 	}
 	return (false);
 }
 
 /*	================================================================	*/
 
-bool	double_so_texture(t_parsing *parsing, char *line, int *i)
+bool	double_so_texture(t_parsing *parsing, char *line)
 {
-	if (is_so_texture_part(line, i))
+	if (!parsing || !line)
+		return (false);
+	if (is_so_texture_part(line))
 	{
 		if (parsing->contain_so_texture)
 		{
-			printf ("Error: double SO texture\n");
+			print_error("Error: double SO texture");
 			return (true);
 		}
 		parsing->contain_so_texture = true;
-		return (true);
 	}
 	return (false);
 }
 
 /*	================================================================	*/
 
-bool	double_we_texture(t_parsing *parsing, char *line, int *i)
+bool	double_we_texture(t_parsing *parsing, char *line)
 {
-	if (is_we_texture_part(line, i))
+	if (!parsing || !line)
+		return (false);
+	if (is_we_texture_part(line))
 	{
 		if (parsing->contain_we_texture)
 		{
-			printf ("Error: double WE texture\n");
+			print_error("Error: double WE texture");
 			return (true);
 		}
 		parsing->contain_we_texture = true;
-		return (true);
 	}
 	return (false);
 }
 
 /*	================================================================	*/
 
-bool	double_ea_texture(t_parsing *parsing, char *line, int *i)
+bool	double_ea_texture(t_parsing *parsing, char *line)
 {
-	if (is_ea_texture_part(line, i))
+	if (!parsing || !line)
+		return (false);
+	if (is_ea_texture_part(line))
 	{
 		if (parsing->contain_ea_texture)
 		{
-			printf ("Error: double EA texture\n");
+			print_error("Error: double EA texture");
 			return (true);
 		}
 		parsing->contain_ea_texture = true;
-		return (true);
 	}
 	return (false);
 }

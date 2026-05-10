@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 10:55:45 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 12:40:04 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 09:52:19 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,44 @@
 
 /*	===============================================================	*/
 
-bool	is_no_texture_part(char *line, int *i)
+bool	is_no_texture_part(char *line)
 {
-	if (line[*i] == 'N' && line[*i + 1] == 'O')
+	if (!line)
+		return (false);
+	if (line[0] == 'N' && line[1] == 'O')
 		return (true);
 	return (false);
 }
 
 /*	===============================================================	*/
 
-bool	is_so_texture_part(char *line, int *i)
+bool	is_so_texture_part(char *line)
 {
-	if (line[*i] == 'S' && line[*i + 1] == 'O')
+	if (!line)
+		return (false);
+	if (line[0] == 'S' && line[1] == 'O')
 		return (true);
 	return (false);
 }
 
 /*	===============================================================	*/
 
-bool	is_we_texture_part(char *line, int *i)
+bool	is_we_texture_part(char *line)
 {
-	if (line[*i] == 'W' && line[*i + 1] == 'E')
+	if (!line)
+		return (false);
+	if (line[0] == 'W' && line[1] == 'E')
 		return (true);
 	return (false);
 }
 
 /*	===============================================================	*/
 
-bool	is_ea_texture_part(char *line, int *i)
+bool	is_ea_texture_part(char *line)
 {
-	if (line[*i] == 'E' && line[*i + 1] == 'A')
+	if (!line)
+		return (false);
+	if (line[0] == 'E' && line[1] == 'A')
 		return (true);
 	return (false);
 }
@@ -54,25 +62,32 @@ bool	is_ea_texture_part(char *line, int *i)
 
 bool	all_texture_part_is_here(t_parsing *parsing)
 {
+	if (!parsing)
+		return (false);
+	if (mute_all_texture_part_is_here(parsing))
+		return (true);
 	if (!parsing->contain_no_texture)
-	{
-		printf ("Error: NO texture is missing\n");
-		return (false);
-	}
+		print_error("Error: NO texture is missing");
 	if (!parsing->contain_so_texture)
-	{
-		printf ("Error: SO texture is missing\n");
-		return (false);
-	}
+		print_error("Error: SO texture is missing");
 	if (!parsing->contain_we_texture)
-	{
-		printf ("Error: WE texture is missing\n");
-		return (false);
-	}
+		print_error("Error: WE texture is missing");
 	if (!parsing->contain_ea_texture)
-	{
-		printf ("Error: EA texture is missing\n");
+		print_error("Error: EA texture is missing");
+	return (false);
+}
+
+/*	===============================================================	*/
+
+bool	mute_all_texture_part_is_here(t_parsing *parsing)
+{
+	if (!parsing->contain_no_texture)
 		return (false);
-	}
+	if (!parsing->contain_so_texture)
+		return (false);
+	if (!parsing->contain_we_texture)
+		return (false);
+	if (!parsing->contain_ea_texture)
+		return (false);
 	return (true);
 }
