@@ -6,26 +6,13 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 08:42:11 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/10 10:06:09 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 11:02:04 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
 #include "get_next_line.h"
-
-/*	================================================================	*/
-
-bool	in_nothing_part(t_parsing *parsing)
-{
-	if (parsing->am_i_in_map)
-		return (false);
-	if (parsing->am_i_in_color)
-		return (false);
-	if (parsing->am_i_in_texture)
-		return (false);
-	return (true);
-}
 
 /*	================================================================	*/
 
@@ -104,24 +91,16 @@ bool	check_the_mapfile_format(t_parsing *parsing)
 
 	i = 0;
 	if (!parsing || !parsing->maps)
-	{
-		print_error("Error: bad structure adress");
-		return (false);
-	}
+		return (print_error("Error: bad structure adress"), false);
 	jump_empty_line(parsing, &i);
 	if (is_empty_file(parsing))
 		return (required_format(), false);
-	if (!is_no_texture_part(parsing->maps[i])
-		&& !is_so_texture_part(parsing->maps[i])
-		&& !is_we_texture_part(parsing->maps[i])
-		&& !is_ea_texture_part(parsing->maps[i]))
+	if (!mute_am_i_in_texture_part(parsing, &i))
 		return (required_format(), false);
-	if (!am_i_in_texture_part(parsing, &i))
-		return (false);
 	if (!texture_case(parsing, &i))
 		return (false);
 	jump_empty_line(parsing, &i);
-	if (!is_f_color_part(parsing->maps[i]) && !is_c_color_part(parsing->maps[i]))
+	if (!am_i_in_color_part(parsing, &i))
 		return (required_format(), false);
 	if (!color_case(parsing, &i))
 		return (false);
@@ -132,3 +111,5 @@ bool	check_the_mapfile_format(t_parsing *parsing)
 }
 
 /*	================================================================	*/
+
+

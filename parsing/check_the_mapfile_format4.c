@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 07:54:17 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/10 10:06:09 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/10 10:56:04 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,8 @@ bool	ea_case(t_parsing *parsing, char *line, int *i)
 
 bool	texture_case(t_parsing *parsing, int *i)
 {
-	while (parsing->maps[*i]
-		&& (is_no_texture_part(parsing->maps[*i])
-			|| is_so_texture_part(parsing->maps[*i])
-			|| is_we_texture_part(parsing->maps[*i])
-			|| is_ea_texture_part(parsing->maps[*i])))
+	while (parsing->maps[*i] && mute_am_i_in_texture_part(parsing, i)
+		&& parsing->am_i_in_texture)
 	{
 		if (!no_case(parsing, parsing->maps[*i], i))
 			return (false);
