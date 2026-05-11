@@ -11,6 +11,9 @@ OBJ_DIR = obj
 
 CLEANDIR = clean
 PARSINGDIR = parsing
+# PARING SUBDIRECTORIES #
+CHECK_FILE = check_file_format
+INIT_PARSING = init_parsing
 TOOLSDIR = tools
 GNL = get_next_line
 
@@ -19,13 +22,13 @@ SRCS = main.c \
 	$(TOOLSDIR)/tools2.c \
 	$(TOOLSDIR)/tools3.c \
 	$(PARSINGDIR)/check_extension.c \
-	$(PARSINGDIR)/check_the_mapfile_format.c \
-	$(PARSINGDIR)/check_the_mapfile_format2.c \
-	$(PARSINGDIR)/check_the_mapfile_format3.c \
-	$(PARSINGDIR)/check_the_mapfile_format4.c \
-	$(PARSINGDIR)/check_the_mapfile_format5.c \
-	$(PARSINGDIR)/init_parsing.c \
-	$(PARSINGDIR)/init_parsing2.c \
+	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format.c \
+	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format2.c \
+	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format3.c \
+	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format4.c \
+	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format5.c \
+	$(PARSINGDIR)/$(INIT_PARSING)/init_parsing.c \
+	$(PARSINGDIR)/$(INIT_PARSING)/init_parsing2.c \
 	$(GNL)/get_next_line.c \
 	$(GNL)/get_next_line_utils.c \
 	$(CLEANDIR)/malloc.c

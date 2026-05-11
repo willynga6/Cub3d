@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_the_mapfile_format2.c                        :+:      :+:    :+:   */
+/*   check_file_format2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 10:55:45 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/10 09:52:19 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/11 07:57:20 by w                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,4 @@ bool	all_texture_part_is_here(t_parsing *parsing)
 	if (!parsing->contain_ea_texture)
 		print_error("Error: EA texture is missing");
 	return (false);
-}
-
-/*	===============================================================	*/
-
-bool	mute_all_texture_part_is_here(t_parsing *parsing)
-{
-	if (!parsing->contain_no_texture)
-		return (false);
-	if (!parsing->contain_so_texture)
-		return (false);
-	if (!parsing->contain_we_texture)
-		return (false);
-	if (!parsing->contain_ea_texture)
-		return (false);
-	return (true);
 }

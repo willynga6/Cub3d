@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 10:12:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 12:41:42 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/11 07:50:41 by w                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ static int	fill_split(t_malloc **lst_malloc, char const *s, char c,
 		}
 		start += length;
 	}
-	result[index] = NULL;
-	return (1);
+	return (result[index] = NULL, 1);
 }
 
 /*	================================================================	*/
