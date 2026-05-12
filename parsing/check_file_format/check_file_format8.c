@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_file_format8.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 06:35:49 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 10:17:15 by wngambi          ###   ########.fr       */
+/*   Created: 2026/05/12 06:16:24 by wngambi           #+#    #+#             */
+/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,26 @@
 #include "structure.h"
 #include "get_next_line.h"
 
-int	main(int ac, char **av)
-{
-	t_parsing	parsing;
-	t_malloc	*lst_malloc;
+/*	================================================================	*/
 
-	lst_malloc = NULL;
-	if (!init_lst_malloc(&lst_malloc))
-		return (1);
-	if (!init_parsing (av, ac, &parsing, &lst_malloc))
-		return (free_lst_malloc(&lst_malloc), 1);
-	check_the_mapfile_format(&parsing);
-	flood_fill(&parsing, &lst_malloc);
-	clean_and_close(&lst_malloc, parsing.fd_map);
-	return (0);
+bool	convert_new_line_into_eol(t_parsing *parsing)
+{
+	int	i;
+	int	j;
+
+	if (!parsing || !parsing->maps)
+		return (false);
+	i = 0;
+	while (parsing->maps[i])
+	{
+		j = 0;
+		while (parsing->maps[i][j])
+		{
+			if (parsing->maps[i][j] == '\n' && parsing->maps[i][j + 1] == '\0')
+				parsing->maps[i][j] = '\0';
+			j++;
+		}
+		i++;
+	}
+	return (true);
 }

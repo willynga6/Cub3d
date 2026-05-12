@@ -6,12 +6,13 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 07:59:25 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/10 10:15:52 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/12 08:40:16 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
+#include "get_next_line.h"
 
 /*	================================================================	*/
 
@@ -24,7 +25,7 @@ bool	ft_charcmp(const char c1, const char c2)
 }
 
 /*	================================================================	*/
-
+/*
 void	display_parsing(const t_parsing *parsing)
 {
 	int	i;
@@ -78,6 +79,7 @@ void	display_parsing(const t_parsing *parsing)
 	}
 	printf("=======================\n");
 }
+*/
 
 /*	================================================================	*/
 

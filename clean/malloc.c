@@ -6,12 +6,13 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 09:11:12 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 10:02:38 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/12 10:13:00 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
+#include "get_next_line.h"
 
 bool	init_lst_malloc(t_malloc **lst_malloc)
 {
@@ -88,4 +89,14 @@ void	free_lst_malloc(t_malloc **lst_malloc)
 		current = next;
 	}
 	*lst_malloc = NULL;
+}
+
+/*	================================================================	*/
+
+void	clean_and_close(t_malloc **lst_malloc, int fd)
+{
+	if (lst_malloc)
+		free_lst_malloc(lst_malloc);
+	if (fd >= 0)
+		close(fd);
 }

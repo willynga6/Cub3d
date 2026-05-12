@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_format5.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 08:40:08 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/11 07:42:01 by w                ###   ########.fr       */
+/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
+#include "get_next_line.h"
 
 /*	================================================================	*/
 
-static bool	is_digit_char(char c)
+bool	is_digit_char(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
 /*	================================================================	*/
 
-static bool	is_valid_rgb_component(char *component)
+bool	is_valid_rgb_component(char *component)
 {
 	int	i;
 	int	value;
@@ -51,7 +52,7 @@ static bool	is_valid_rgb_component(char *component)
 
 /*	================================================================	*/
 
-static bool	is_valid_rgb_value(t_parsing *parsing, char *value)
+bool	is_valid_rgb_value(t_parsing *parsing, char *value)
 {
 	char	**rgb_values;
 
@@ -70,7 +71,7 @@ static bool	is_valid_rgb_value(t_parsing *parsing, char *value)
 
 /*	================================================================	*/
 
-static bool	save_color_value(t_parsing *parsing, char *line, bool is_f)
+bool	save_color_value(t_parsing *parsing, char *line, bool is_f)
 {
 	char	**value;
 

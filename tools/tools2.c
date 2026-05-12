@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 10:12:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/11 07:50:41 by w                ###   ########.fr       */
+/*   Updated: 2026/05/12 08:49:43 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "structure.h" 
+#include "structure.h"
+#include "get_next_line.h"
 
 /*	================================================================	*/
 
@@ -65,8 +66,8 @@ static int	fill_split(t_malloc **lst_malloc, char const *s, char c,
 {
 	int	index;
 	int	start;
-	int	length;
 	int	word_start;
+	int	length;
 
 	index = 0;
 	start = 0;
@@ -77,19 +78,16 @@ static int	fill_split(t_malloc **lst_malloc, char const *s, char c,
 		if (!s[start])
 			break ;
 		word_start = start;
-		length = 0;
-		while (s[start + length] && s[start + length] != c)
-			length++;
-		if (length > 0)
-		{
-			result[index] = word_dup(lst_malloc, s, word_start, length);
-			if (!result[index])
-				return (0);
-			index++;
-		}
-		start += length;
+		while (s[start] && s[start] != c)
+			start++;
+		length = start - word_start;
+		result[index] = word_dup(lst_malloc, s, word_start, length);
+		if (!result[index])
+			return (0);
+		index++;
 	}
-	return (result[index] = NULL, 1);
+	result[index] = NULL;
+	return (1);
 }
 
 /*	================================================================	*/

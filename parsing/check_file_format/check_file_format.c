@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_format.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 08:42:11 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/11 07:48:29 by w                ###   ########.fr       */
+/*   Updated: 2026/05/12 08:25:37 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ bool	check_the_mapfile_format(t_parsing *parsing)
 		return (false);
 	jump_empty_line(parsing, &i);
 	if (!map_case(parsing, &i))
+		return (false);
+	if (!quick_check_map_format(parsing))
+		return (false);
+	if (!init_map(parsing))
 		return (false);
 	return (true);
 }

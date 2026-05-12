@@ -6,12 +6,13 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 09:35:23 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/10 09:58:45 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/12 10:15:34 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
+#include "get_next_line.h"
 
 /*	================================================================	*/
 
@@ -45,6 +46,56 @@ void	required_format(void)
 	printf ("100001\n");
 	printf ("100001\n");
 	printf ("111111\n");
+}
+
+/*	================================================================	*/
+
+void	display_final_map(const t_map *final_map)
+{
+	int	i;
+
+	if (!final_map || !final_map->map)
+	{
+		printf("Final map is NULL or empty\n");
+		return ;
+	}
+	printf("\n========== FINAL MAP ==========\n");
+	printf("Number of lines: %d\n", final_map->nb_lines);
+	printf("Max line length: %d\n", final_map->max_line_length);
+	printf("Map content:\n");
+	printf("------------------------------\n");
+	i = 0;
+	while (final_map->map[i])
+	{
+		printf("%s\n", final_map->map[i]);
+		i++;
+	}
+	printf("------------------------------\n");
+}
+
+/*	================================================================	*/
+
+char	**duplicate_maps(t_parsing *parsing, t_malloc **lst_malloc)
+{
+	char	**original_maps;
+	char	**maps_copy;
+	int		i;
+
+	if (!parsing || !parsing->final_maps.map)
+		return (NULL);
+	original_maps = parsing->final_maps.map;
+	maps_copy = malloc_remix(lst_malloc,
+			sizeof(char *) * (parsing->final_maps.nb_lines) + 1);
+	if (!maps_copy)
+		return (NULL);
+	i = 0;
+	while (i < parsing->nb_lines)
+	{
+		maps_copy[i] = ft_strdup(lst_malloc, original_maps[i]);
+		i++;
+	}
+	maps_copy[i] = NULL;
+	return (maps_copy);
 }
 
 /*	================================================================	*/

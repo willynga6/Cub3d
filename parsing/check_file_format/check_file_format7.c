@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_format7.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 07:42:12 by w                 #+#    #+#             */
-/*   Updated: 2026/05/11 07:55:58 by w                ###   ########.fr       */
+/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
+#include "get_next_line.h"
 
 /*	================================================================	*/
 
@@ -78,7 +79,7 @@ static bool	is_map_line(char *line)
 	while (line[j])
 	{
 		if (line[j] == '0' || line[j] == '1' || line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'W')
+			|| line[j] == 'E' || line[j] == 'W' || line[j] == ' ')
 			j++;
 		else
 			return (false);
@@ -94,6 +95,7 @@ bool	map_case(t_parsing *parsing, int *i)
 
 	if (!parsing || !i || !parsing->maps || !parsing->maps[*i])
 		return (print_error("Error: map is missing"), false);
+	convert_new_line_into_eol(parsing);
 	map_start = *i;
 	parsing->am_i_in_map = true;
 	while (parsing->maps[*i] && !is_empty_line(parsing->maps[*i]))

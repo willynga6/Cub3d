@@ -12,7 +12,8 @@ OBJ_DIR = obj
 CLEANDIR = clean
 PARSINGDIR = parsing
 # PARING SUBDIRECTORIES #
-CHECK_FILE = check_file_format
+CHECK_FILE_FORMAT = check_file_format
+CHECK_MAP = check_map
 INIT_PARSING = init_parsing
 TOOLSDIR = tools
 GNL = get_next_line
@@ -22,11 +23,19 @@ SRCS = main.c \
 	$(TOOLSDIR)/tools2.c \
 	$(TOOLSDIR)/tools3.c \
 	$(PARSINGDIR)/check_extension.c \
-	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format.c \
-	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format2.c \
-	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format3.c \
-	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format4.c \
-	$(PARSINGDIR)/$(CHECK_FILE)/check_file_format5.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format2.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format_2bis.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format3.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format4.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format5.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format6.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format7.c \
+	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format8.c \
+	$(PARSINGDIR)/$(CHECK_MAP)/check_maps.c \
+	$(PARSINGDIR)/$(CHECK_MAP)/check_maps2.c \
+	$(PARSINGDIR)/$(CHECK_MAP)/check_maps3.c \
+	$(PARSINGDIR)/$(CHECK_MAP)/check_maps4.c \
 	$(PARSINGDIR)/$(INIT_PARSING)/init_parsing.c \
 	$(PARSINGDIR)/$(INIT_PARSING)/init_parsing2.c \
 	$(GNL)/get_next_line.c \
