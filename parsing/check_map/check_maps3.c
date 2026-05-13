@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_maps3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 09:00:00 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 09:49:08 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/13 14:06:08 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,10 @@ bool	maj_position_player(t_parsing *parsing)
 			if (parsing->maps[i][j] == 'N' || parsing->maps[i][j] == 'S'
 				|| parsing->maps[i][j] == 'E' || parsing->maps[i][j] == 'W')
 			{
-				parsing->player.y = i;
-				parsing->player.x = j;
+				parsing->player.map_y = i;
+				parsing->player.map_x = j;
+				parsing->player.pos_y = i + 0.5;
+                parsing->player.pos_x = j + 0.5;
 				return (true);
 			}
 			j++;

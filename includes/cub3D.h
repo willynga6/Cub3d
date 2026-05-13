@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 10:16:05 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/13 15:06:59 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 
 # include <stdbool.h> // To get the boolean value.
 # include <fcntl.h> // open
+# include <math.h>
 # include <unistd.h> // close / read / write
 # include <stdio.h> // printf
 # include <stdlib.h> // malloc / free / perror / exit
 # include "structure.h"
-
+# include "../mlx/mlx.h"
+# define TILE_SIZE 32
 /*  ====================ALL THE FUNCTION USED ====================*/
 
 /*  PARSING */
@@ -131,5 +133,18 @@ void	print_error(const char *message);
 void	required_format(void);
 void	clean_and_close(t_malloc **lst_malloc, int fd);
 int		ft_strlen(char *s);
+
+bool init_mlx(t_game *game);
+void init_image(t_game *game);
+void    put_pixel(t_game *game, int x, int y, int color);
+void display_image(t_game *game);
+int render_frame(t_game *game);
+int	key_press(int keycode, t_game *game);
+int	key_release(int keycode, t_game *game);
+int	game_loop(t_game *game);
+int	close_window(t_game *game);
+void	extract_player(t_parsing *p);
+void	init_player_dir(t_player *p, char c);
+void	rotate_p(t_player *p, double rot_spd);
 
 #endif

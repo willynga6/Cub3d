@@ -3,6 +3,7 @@ NAME = cub3d
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
+MLX_FLAGS = -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz
 INCLUDES = -Iincludes -Iget_next_line
 
 OBJ_DIR = obj
@@ -17,8 +18,12 @@ CHECK_MAP = check_map
 INIT_PARSING = init_parsing
 TOOLSDIR = tools
 GNL = get_next_line
+GAMEDIR = game
 
 SRCS = main.c \
+	$(GAMEDIR)/window.c \
+	$(GAMEDIR)/key_push.c \
+	$(GAMEDIR)/rotation.c \
 	$(TOOLSDIR)/tools1.c \
 	$(TOOLSDIR)/tools2.c \
 	$(TOOLSDIR)/tools3.c \
@@ -51,7 +56,7 @@ RM = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)

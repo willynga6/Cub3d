@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_maps4.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 09:25:37 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 10:16:05 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/13 13:49:22 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	replace_pos_by_zero(t_parsing *parsing)
 {
 	if (!parsing || !parsing->maps || !parsing->player.flood_f_map)
 		return ;
-	parsing->player.flood_f_map[parsing->player.x][parsing->player.y] = '0';
+	parsing->player.flood_f_map[parsing->player.map_y][parsing->player.map_x] = '0';
 }
 
 /*	================================================================	*/
@@ -47,8 +47,7 @@ void	real_flood_fill(t_parsing *p, int y, int x, bool *res)
 
 	if (!p || !p->final_maps.map || !res || *res == false)
 		return ;
-	if (y < 0 || x < 0
-		|| y >= p->final_maps.nb_lines
+	if (y < 0 || x < 0 || y >= p->final_maps.nb_lines
 		|| x >= (int)ft_strlen(p->final_maps.map[y]))
 	{
 		*res = false;
@@ -81,7 +80,8 @@ bool	flood_fill(t_parsing *parsing, t_malloc **lst_malloc)
 		return (false);
 	if (!set_up_flood_fill(parsing, lst_malloc))
 		return (false);
-	real_flood_fill(parsing, parsing->player.y, parsing->player.x, &res_flood);
+	real_flood_fill(parsing, parsing->player.map_y,
+		parsing->player.map_x, &res_flood);
 	if (!res_flood)
 		return (false);
 	return (res_flood);

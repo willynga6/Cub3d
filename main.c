@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:35:49 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 10:17:15 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/13 15:07:19 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "structure.h"
 #include "get_next_line.h"
 
-int	main(int ac, char **av)
+/*int	main(int ac, char **av)
 {
 	t_parsing	parsing;
 	t_malloc	*lst_malloc;
@@ -28,4 +28,55 @@ int	main(int ac, char **av)
 	flood_fill(&parsing, &lst_malloc);
 	clean_and_close(&lst_malloc, parsing.fd_map);
 	return (0);
+}*/
+
+int main(int ac, char **av)
+{
+    t_game     game;
+    t_malloc   *lst_malloc;
+    lst_malloc = NULL;
+
+    if (!init_lst_malloc(&lst_malloc))
+        return (1);
+
+    if (!init_parsing(av, ac, &game.parsing, &lst_malloc))
+        return (free_lst_malloc(&lst_malloc), 1);
+
+    if (!check_the_mapfile_format(&game.parsing))
+        return (free_lst_malloc(&lst_malloc), 1);
+
+    if (!flood_fill(&game.parsing, &lst_malloc))
+        return (free_lst_malloc(&lst_malloc), 1);
+
+    extract_player(&game.parsing);
+    if (!init_mlx(&game))
+        return (free_lst_malloc(&lst_malloc), 1);
+
+    init_image(&game); // IMPORTANT (Step 1 buffer system)
+
+    mlx_hook(game.mlx.win,
+        2,
+        1L << 0,
+        key_press,
+        &game);
+    mlx_hook(game.mlx.win,
+        3,
+        1L << 1,
+        key_release,
+        &game);
+    mlx_hook(game.mlx.win,
+        17,
+        0,
+        close_window,
+        &game);
+
+    mlx_loop_hook(game.mlx.mlx,
+        game_loop,
+        &game);
+
+    mlx_loop(game.mlx.mlx);
+
+    clean_and_close(&lst_malloc, game.parsing.fd_map);
+    return (0);
 }
+
