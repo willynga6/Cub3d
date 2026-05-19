@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 10:42:08 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/14 17:16:28 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/19 17:42:30 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ void	init_image(t_game *game)
 	game->mlx.img = mlx_new_image(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	game->mlx.addr = mlx_get_data_addr(game->mlx.img, &game->mlx.bits_per_pixel,
 			&game->mlx.line_length, &game->mlx.endian);
+}
+
+int	get_texture_pixel(t_texture *tex, int x, int y)
+{
+	char	*dst;
+
+	if (!tex || !tex->addr)
+		return (0);
+
+	if (x < 0 || y < 0 || x >= tex->width || y >= tex->height)
+		return (0);
+
+	dst = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
+	return (*(unsigned int *)dst);
 }
 
 void	put_pixel(t_game *game, int x, int y, int color)
@@ -113,7 +127,7 @@ void	draw_ceiling_and_floor(t_game *game)
 		while (x < WIN_WIDTH)
 		{
 			if (y < WIN_HEIGHT / 2)
-				put_pixel(game, x, y, 0x87CEEB);
+				put_pixel(game, x, y, 0x3B2F2F);
 			else
 				put_pixel(game, x, y, 0x3B2F2F);
 			x++;

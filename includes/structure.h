@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/14 11:47:06 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/19 13:00:51 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,26 @@ typedef struct s_mlx
 	int						endian;
 }							t_mlx;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_texture;
+
 typedef struct s_game
 {
 	double					last_time;
+	t_texture				no;
+	t_texture				so;
+	t_texture				ea;
+	t_texture				we;
+	t_texture				floor;
+	t_texture				ceiling;
 	t_parsing				parsing;
 	t_mlx					mlx;
 }							t_game;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_format4.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 07:54:17 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/19 17:37:33 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	no_case(t_parsing *parsing, char *line, int *i)
 			value = ft_split(parsing->lst_malloc, line, ' ');
 			if (!value)
 				return (false);
-			parsing->no_texture = value[1];
+			parsing->no_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
 		return (false);
@@ -58,7 +58,7 @@ bool	so_case(t_parsing *parsing, char *line, int *i)
 			value = ft_split(parsing->lst_malloc, line, ' ');
 			if (!value)
 				return (false);
-			parsing->so_texture = value[1];
+			parsing->so_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
 		return (false);
@@ -84,7 +84,7 @@ bool	we_case(t_parsing *parsing, char *line, int *i)
 			value = ft_split(parsing->lst_malloc, line, ' ');
 			if (!value)
 				return (false);
-			parsing->we_texture = value[1];
+			parsing->we_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
 		return (false);
@@ -110,7 +110,7 @@ bool	ea_case(t_parsing *parsing, char *line, int *i)
 			value = ft_split(parsing->lst_malloc, line, ' ');
 			if (!value)
 				return (false);
-			parsing->ea_texture = value[1];
+			parsing->ea_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
 		return (false);

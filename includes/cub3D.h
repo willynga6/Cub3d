@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/14 17:21:44 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/19 17:35:20 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@
 # include <stdlib.h>  // malloc / free / perror / exit
 # include <unistd.h>  // close / read / write
 # define TILE_SIZE 32
-# define WIN_WIDTH  1920
+# define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define MM_SCALE 4
 # define MM_OFFSET_X 10
 # define MM_OFFSET_Y 10
+# define NO_TEX "textures/wall_no.xpm"
+# define SO_TEX "textures/wall_so.xpm"
+# define WE_TEX "textures/wall_we.xpm"
+# define EA_TEX "textures/wall_ea.xpm"
+# define F_TEX "textures/floor_cub.xpm"
+# define C_TEX "textures/ceiling.xpm"
 /*  ====================ALL THE FUNCTION USED ====================*/
 
 /*  PARSING */
@@ -155,6 +161,9 @@ void	cast_ray(t_game *game);
 void	draw_minimap_dir(t_game *game);
 void	draw_minimap_player(t_game *game);
 void	draw_minimap(t_game *game);
-
+int		load_all_textures(t_game *game);
+int		load_texture(t_game *game, t_texture *tex, char *path);
+int	get_texture_pixel(t_texture *tex, int x, int y);
+char *ft_strtrim(const char *s1, const char *set);
 
 #endif

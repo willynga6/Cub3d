@@ -23,6 +23,7 @@ GAMEDIR = game
 SRCS = main.c \
 	$(GAMEDIR)/window.c \
 	$(GAMEDIR)/raycasting.c \
+	$(GAMEDIR)/texture.c \
 	$(GAMEDIR)/mm_map.c \
 	$(GAMEDIR)/key_push.c \
 	$(GAMEDIR)/rotation.c \
