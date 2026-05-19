@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/13 15:10:38 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/14 11:47:06 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ struct						s_map
 
 struct						s_player
 {
-	int					map_x;
-	int					map_y;
+	int						map_x;
+	int						map_y;
 	double					pos_x;
 	double					pos_y;
 	double					plane_x;
@@ -110,6 +110,7 @@ typedef struct s_mlx
 
 typedef struct s_game
 {
+	double					last_time;
 	t_parsing				parsing;
 	t_mlx					mlx;
 }							t_game;

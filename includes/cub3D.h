@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/13 15:06:59 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/14 17:21:44 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,36 @@
 
 /*  ====================ALL THE LIBRAIRIES USED ====================*/
 
-# include <stdbool.h> // To get the boolean value.
+# include "../mlx/mlx.h"
+# include "structure.h"
 # include <fcntl.h> // open
 # include <math.h>
-# include <unistd.h> // close / read / write
-# include <stdio.h> // printf
-# include <stdlib.h> // malloc / free / perror / exit
-# include "structure.h"
-# include "../mlx/mlx.h"
+# include <stdbool.h> // To get the boolean value.
+# include <stdio.h>   // printf
+# include <stdlib.h>  // malloc / free / perror / exit
+# include <unistd.h>  // close / read / write
 # define TILE_SIZE 32
+# define WIN_WIDTH  1920
+# define WIN_HEIGHT 1080
+# define MM_SCALE 4
+# define MM_OFFSET_X 10
+# define MM_OFFSET_Y 10
 /*  ====================ALL THE FUNCTION USED ====================*/
 
 /*  PARSING */
 
-	/*  CHECK INIT PARSING */
+/*  CHECK INIT PARSING */
 bool	init_parsing(char **av, int ac, t_parsing *parsing,
 			t_malloc **lst_malloc);
 int		count_lines(char *filename, t_malloc **lst_malloc);
 char	**get_maps(t_parsing *parsing, t_malloc **lst_malloc);
 
-	/*  CHECK EXTENSION */
+/*  CHECK EXTENSION */
 bool	is_valid_extension(t_parsing *parsing);
 
-	/*  CHECK THE FILE FORMAT */
+/*  CHECK THE FILE FORMAT */
 
-			/*	format 1*/
+/*	format 1*/
 bool	in_nothing_part(t_parsing *parsing);
 bool	is_empty_file(t_parsing *parsing);
 void	jump_empty_line(t_parsing *parsing, int *i);
@@ -47,7 +52,7 @@ bool	am_i_in_texture_part(t_parsing *parsing, int *i);
 bool	mute_am_i_in_texture_part(t_parsing *parsing, int *i);
 bool	check_the_mapfile_format(t_parsing *parsing);
 
-			/*	format 2*/
+/*	format 2*/
 bool	is_no_texture_part(char *line);
 bool	is_so_texture_part(char *line);
 bool	is_we_texture_part(char *line);
@@ -55,58 +60,58 @@ bool	is_ea_texture_part(char *line);
 bool	all_texture_part_is_here(t_parsing *parsing);
 bool	mute_all_texture_part_is_here(t_parsing *parsing);
 
-			/*	format 2bis*/
+/*	format 2bis*/
 bool	mute_all_texture_part_is_here(t_parsing *parsing);
 
-			/*	format 3*/
+/*	format 3*/
 bool	double_no_texture(t_parsing *parsing, char *line);
 bool	double_so_texture(t_parsing *parsing, char *line);
 bool	double_we_texture(t_parsing *parsing, char *line);
 bool	double_ea_texture(t_parsing *parsing, char *line);
 
-			/*	format 4*/
+/*	format 4*/
 bool	no_case(t_parsing *parsing, char *line, int *i);
 bool	so_case(t_parsing *parsing, char *line, int *i);
 bool	we_case(t_parsing *parsing, char *line, int *i);
 bool	ea_case(t_parsing *parsing, char *line, int *i);
 bool	texture_case(t_parsing *parsing, int *i);
 
-			/*	format 5*/
+/*	format 5*/
 bool	is_digit_char(char c);
 bool	is_valid_rgb_component(char *component);
 bool	is_valid_rgb_value(t_parsing *parsing, char *value);
 bool	save_color_value(t_parsing *parsing, char *line, bool is_f);
 bool	is_f_color_part(char *line);
 
-			/*	format 6*/
+/*	format 6*/
 bool	is_c_color_part(char *line);
 bool	all_color_part_is_here(t_parsing *parsing);
 bool	mute_all_color_part_is_here(t_parsing *parsing);
 bool	am_i_in_color_part(t_parsing *parsing, int *i);
 bool	mute_am_i_in_color_part(t_parsing *parsing, int *i);
 
-			/*	format 7*/
+/*	format 7*/
 bool	color_case(t_parsing *parsing, int *i);
 bool	map_case(t_parsing *parsing, int *i);
 
-			/*	format 8*/
+/*	format 8*/
 bool	convert_new_line_into_eol(t_parsing *parsing);
 
-	/*  CHECK THE MAP */
+/*  CHECK THE MAP */
 
-			/*	FILE 1*/
+/*	FILE 1*/
 int		get_number_of_lines(t_parsing *parsing);
 int		get_max_line_length(t_parsing *parsing);
 bool	only_walls(t_parsing *parsing);
 bool	init_map(t_parsing *parsing);
 
-			/*	FILE 2*/
+/*	FILE 2*/
 bool	check_first_and_last_line(t_parsing *parsing, int nb_lines);
 bool	only_one_player(t_parsing *parsing);
 bool	quick_check_map_format(t_parsing *parsing);
 bool	check_map_format(t_parsing *parsing);
 
-			/*	FILE 3*/
+/*	FILE 3*/
 bool	maj_position_player(t_parsing *parsing);
 void	replace_pos_by_zero(t_parsing *parsing);
 bool	set_up_flood_fill(t_parsing *parsing, t_malloc **lst_malloc);
@@ -134,17 +139,22 @@ void	required_format(void);
 void	clean_and_close(t_malloc **lst_malloc, int fd);
 int		ft_strlen(char *s);
 
-bool init_mlx(t_game *game);
-void init_image(t_game *game);
-void    put_pixel(t_game *game, int x, int y, int color);
-void display_image(t_game *game);
-int render_frame(t_game *game);
-int	key_press(int keycode, t_game *game);
-int	key_release(int keycode, t_game *game);
-int	game_loop(t_game *game);
-int	close_window(t_game *game);
+bool	init_mlx(t_game *game);
+void	init_image(t_game *game);
+void	put_pixel(t_game *game, int x, int y, int color);
+void	display_image(t_game *game);
+int		render_frame(t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		game_loop(t_game *game);
+int		close_window(t_game *game);
 void	extract_player(t_parsing *p);
 void	init_player_dir(t_player *p, char c);
 void	rotate_p(t_player *p, double rot_spd);
+void	cast_ray(t_game *game);
+void	draw_minimap_dir(t_game *game);
+void	draw_minimap_player(t_game *game);
+void	draw_minimap(t_game *game);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 09:25:37 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/13 13:49:22 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/14 11:43:25 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,38 @@ bool	set_up_flood_fill(t_parsing *parsing, t_malloc **lst_malloc)
 
 void	real_flood_fill(t_parsing *p, int y, int x, bool *res)
 {
-	char	actual_char;
+	char	c;
 
-	if (!p || !p->final_maps.map || !res || *res == false)
+	if (!p || !p->player.flood_f_map || !res || !*res)
 		return ;
-	if (y < 0 || x < 0 || y >= p->final_maps.nb_lines
-		|| x >= (int)ft_strlen(p->final_maps.map[y]))
+	if (y < 0 || y >= p->final_maps.nb_lines)
+		return ;
+	if (!p->player.flood_f_map[y])
 	{
 		*res = false;
 		return ;
 	}
-	actual_char = p->final_maps.map[y][x];
-	if (actual_char == ' ')
+	if (x < 0 || x >= (int)ft_strlen(p->player.flood_f_map[y]))
 	{
 		*res = false;
-		print_error("Error: Empty space accessible by the player in the map");
 		return ;
 	}
-	if (actual_char == '1' || actual_char == 'F')
+	c = p->player.flood_f_map[y][x];
+	if (c == ' ' || c == '\0')
+	{
+		*res = false;
+		print_error("Open map (space leak)");
 		return ;
-	p->final_maps.map[y][x] = 'F';
-	real_flood_fill(p, y + 1, x, res);
-	real_flood_fill(p, y - 1, x, res);
-	real_flood_fill(p, y, x + 1, res);
-	real_flood_fill(p, y, x - 1, res);
+	}
+	if (c == '1' || c == 'F')
+		return ;
+	p->player.flood_f_map[y][x] = 'F';
+	real_flood_fill(p, y +1, x, res);
+	real_flood_fill(p, y -1, x, res);
+	real_flood_fill(p, y, x +1, res);
+	real_flood_fill(p, y, x -1, res);
 }
+
 
 /*	================================================================	*/
 
