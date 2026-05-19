@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:51:17 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/19 17:21:50 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/19 17:50:48 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,11 +182,11 @@ void	cast_ray(t_game *game)
 
 		wall_x -= floor(wall_x);
 		tex_x = (int)(wall_x * tex->width);
-		
+
 		if (side == 0 && ray_dir_x > 0)
-		tex_x = tex->width - tex_x - 1;
+			tex_x = tex->width - tex_x - 1;
 		if (side == 1 && ray_dir_y < 0)
-		tex_x = tex->width - tex_x - 1;
+			tex_x = tex->width - tex_x - 1;
 		if (tex_x < 0)
 			tex_x = 0;
 		if (tex_x >= tex->width)
