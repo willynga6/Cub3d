@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/19 13:00:51 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/20 14:54:37 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_game
 	t_texture				floor;
 	t_texture				ceiling;
 	t_parsing				parsing;
+	int						prev_ms_x;
 	t_mlx					mlx;
 }							t_game;
 

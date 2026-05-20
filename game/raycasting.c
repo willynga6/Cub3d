@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:51:17 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/19 17:50:48 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/20 13:59:23 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,8 @@ static t_texture	*select_texture(t_game *game, int side, double ray_dir_x,
 	}
 }
 
-void	draw_texture_line(
-	t_game *game,
-	t_texture *tex,
-	int x,
-	int draw_start,
-	int draw_end,
-	int tex_x,
-	double step,
-	double tex_pos)
+void	draw_texture_line(t_game *game, t_texture *tex, int x, int draw_start,
+		int draw_end, int tex_x, double step, double tex_pos)
 {
 	int	y;
 	int	tex_y;
@@ -50,37 +43,24 @@ void	draw_texture_line(
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
 		tex_pos += step;
-
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-
 		color = get_texture_pixel(tex, tex_x, tex_y);
 		put_pixel(game, x, y, color);
 		y++;
 	}
 }
 
-/*static void	draw_vertical_line(t_game *game, int x, int start, int end,
-		int color)
-{
-	while (start < end)
-	{
-		put_pixel(game, x, start, color);
-		start++;
-	}
-}*/
-
 void	cast_ray(t_game *game)
 {
 	t_player	*p;
-	//int			color;
-	t_texture *tex;
-	double wall_x;
-	int tex_x;
-	double step;
-	double tex_pos;
+	t_texture	*tex;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+	double		tex_pos;
 	int			x;
 	double		camera_x;
 	double		ray_dir_x;
@@ -99,7 +79,7 @@ void	cast_ray(t_game *game)
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	char tile;
+	char		tile;
 
 	p = &game->parsing.player;
 	x = 0;
@@ -114,7 +94,6 @@ void	cast_ray(t_game *game)
 			delta_dist_x = 1e30;
 		else
 			delta_dist_x = fabs(1 / ray_dir_x);
-
 		if (ray_dir_y == 0)
 			delta_dist_y = 1e30;
 		else
@@ -174,15 +153,12 @@ void	cast_ray(t_game *game)
 		if (draw_end >= WIN_HEIGHT)
 			draw_end = WIN_HEIGHT - 1;
 		tex = select_texture(game, side, ray_dir_x, ray_dir_y);
-
 		if (side == 0)
 			wall_x = p->pos_y + perp_wall_dist * ray_dir_y;
 		else
 			wall_x = p->pos_x + perp_wall_dist * ray_dir_x;
-
 		wall_x -= floor(wall_x);
 		tex_x = (int)(wall_x * tex->width);
-
 		if (side == 0 && ray_dir_x > 0)
 			tex_x = tex->width - tex_x - 1;
 		if (side == 1 && ray_dir_y < 0)
@@ -193,8 +169,8 @@ void	cast_ray(t_game *game)
 			tex_x = tex->width - 1;
 		step = (double)tex->height / (double)line_height;
 		tex_pos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
-
-		draw_texture_line(game, tex, x, draw_start, draw_end, tex_x, step, tex_pos);
+		draw_texture_line(game, tex, x, draw_start, draw_end, tex_x, step,
+			tex_pos);
 		x++;
 	}
 }

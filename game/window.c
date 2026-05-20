@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 10:42:08 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/19 17:42:30 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/20 15:47:17 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	init_mlx(t_game *game)
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	if (!game->mlx.win)
 		return (false);
+	mlx_mouse_hide(game->mlx.mlx, game->mlx.win);
 	return (true);
 }
 void	init_image(t_game *game)
@@ -157,6 +158,7 @@ int	render_frame(t_game *game)
 	draw_minimap(game);
 	draw_minimap_player(game);
 	draw_minimap_dir(game);
+	draw_cross_s(game);
 	display_image(game);
 	return (0);
 }

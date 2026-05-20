@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 13:39:13 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/19 17:46:28 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/20 15:44:46 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,23 @@ static int	is_wall(t_parsing *p, double x, double y)
 	return (0);
 }
 
+void	draw_cross_s(t_game *game)
+{
+	int	cy;
+	int cx;
+	int i;
+	
+	cx = WIN_WIDTH / 2;
+	cy = WIN_HEIGHT / 2;
+	
+	i = -5;
+	while (i <= 5)
+	{
+		put_pixel(game, cx + i, cy, 0xFFFFFF);
+		put_pixel(game, cx, cy + i, 0xFFFFFF);
+		i++;
+	}
+}
 int	game_loop(t_game *game)
 {
 	double		current;

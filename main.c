@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:35:49 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/19 17:29:47 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/20 15:20:17 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ int	main(int ac, char **av)
 	extract_player(&game.parsing);
 	if (!init_mlx(&game))
 		return (free_lst_malloc(&lst_malloc), 1);
-	printf("NO TEX = [%s]\n", game.parsing.no_texture);
+	game.prev_ms_x = WIN_WIDTH / 2;
+	mlx_mouse_move(game.mlx.mlx,
+		game.mlx.win,
+		WIN_WIDTH / 2,
+		WIN_HEIGHT / 2);
+	mlx_hook(game.mlx.win, 6, 1L << 6, mouse_move, &game);
 	if (!load_all_textures(&game))
 		return (1);
 	init_image(&game);

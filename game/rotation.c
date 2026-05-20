@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 09:46:46 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/13 10:34:27 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/20 15:49:08 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ void	rotate_p(t_player *p, double rot_spd)
 	prev_plane_x = p->plane_x;
 	p->plane_x = p->plane_x * cos(rot_spd) - p->plane_y * sin(rot_spd);
 	p->plane_y = prev_plane_x * sin(rot_spd) + p->plane_y * cos(rot_spd);
+}
+
+int	mouse_move(int x, int y, t_game *game)
+{
+	int			delta_x;
+	double		center_x;
+
+	(void)y;
+	center_x = WIN_WIDTH / 2;
+	delta_x = x - center_x;
+	if (delta_x != 0)
+		rotate_p(&game->parsing.player, delta_x * 0.001);
+	mlx_mouse_move(game->mlx.mlx, game->mlx.win, center_x, WIN_HEIGHT / 2);
+	if (delta_x == 0)
+		return (0);
+	return (0);
 }
