@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/20 15:40:12 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:02:45 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,7 @@ int	get_texture_pixel(t_texture *tex, int x, int y);
 char *ft_strtrim(const char *s1, const char *set);
 int	mouse_move(int x, int y, t_game *game);
 void	draw_cross_s(t_game *game);
+void	toggle_door(t_game *game);
+bool	init_doors(t_parsing *parsing);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 10:42:08 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/20 15:47:17 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:49:01 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ bool	init_mlx(t_game *game)
 	game->mlx.mlx = mlx_init();
 	if (!game->mlx.mlx)
 		return (false);
-	game->mlx.win = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
+	game->mlx.win = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT,
+			"cub3d");
 	if (!game->mlx.win)
 		return (false);
 	mlx_mouse_hide(game->mlx.mlx, game->mlx.win);
 	return (true);
 }
+
 void	init_image(t_game *game)
 {
 	game->mlx.img = mlx_new_image(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -36,10 +38,8 @@ int	get_texture_pixel(t_texture *tex, int x, int y)
 
 	if (!tex || !tex->addr)
 		return (0);
-
 	if (x < 0 || y < 0 || x >= tex->width || y >= tex->height)
 		return (0);
-
 	dst = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
 	return (*(unsigned int *)dst);
 }
@@ -116,10 +116,11 @@ void	draw_square(t_game *game, int map_x, int map_y, int color)
 		y++;
 	}
 }
+
 void	draw_ceiling_and_floor(t_game *game)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < WIN_HEIGHT)
@@ -130,7 +131,7 @@ void	draw_ceiling_and_floor(t_game *game)
 			if (y < WIN_HEIGHT / 2)
 				put_pixel(game, x, y, 0x3B2F2F);
 			else
-				put_pixel(game, x, y, 0x3B2F2F);
+				put_pixel(game, x, y, 0x5C4033);
 			x++;
 		}
 		y++;

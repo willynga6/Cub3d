@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 13:12:47 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/20 15:29:06 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:45:11 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	load_all_textures(t_game *game)
 	if (!load_texture(game, &game->we, game->parsing.we_texture))
 		return (0);
 	if (!load_texture(game, &game->ea, game->parsing.ea_texture))
+		return (0);
+	if (!load_texture(game, &game->door, "textures/door.xpm"))
 		return (0);
 	return (1);
 }

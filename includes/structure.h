@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/20 14:54:37 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:25:03 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct						s_map
 	char					**map;
 	int						nb_lines;
 	int						max_line_length;
+	int						**door_open;
 };
 
 /*	================================================================	*/
@@ -127,6 +128,7 @@ typedef struct s_game
 	t_texture				ea;
 	t_texture				we;
 	t_texture				floor;
+	t_texture				door;
 	t_texture				ceiling;
 	t_parsing				parsing;
 	int						prev_ms_x;

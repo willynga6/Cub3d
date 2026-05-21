@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_format7.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 07:42:12 by w                 #+#    #+#             */
-/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/05/21 12:11:48 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static bool	is_map_line(char *line)
 	while (line[j])
 	{
 		if (line[j] == '0' || line[j] == '1' || line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'W' || line[j] == ' ')
+			|| line[j] == 'E' || line[j] == 'W'
+			|| line[j] == 'D' || line[j] == ' ')
 			j++;
 		else
 			return (false);

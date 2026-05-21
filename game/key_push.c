@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 13:39:13 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/20 15:44:46 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:01:12 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 		exit(0);
+	if (keycode == 101)
+		toggle_door(game);
 	if (keycode == 119)
 		game->parsing.player.move_up = 1;
 	if (keycode == 115)
@@ -79,18 +81,20 @@ static int	is_wall(t_parsing *p, double x, double y)
 		return (1);
 	if (p->final_maps.map[my][mx] == '1')
 		return (1);
+	if (p->final_maps.map[my][mx] == 'D'
+		&& p->final_maps.door_open[my][mx] == 0)
+		return (1);
 	return (0);
 }
 
 void	draw_cross_s(t_game *game)
 {
 	int	cy;
-	int cx;
-	int i;
-	
+	int	cx;
+	int	i;
+
 	cx = WIN_WIDTH / 2;
 	cy = WIN_HEIGHT / 2;
-	
 	i = -5;
 	while (i <= 5)
 	{
@@ -99,6 +103,7 @@ void	draw_cross_s(t_game *game)
 		i++;
 	}
 }
+
 int	game_loop(t_game *game)
 {
 	double		current;
@@ -118,42 +123,38 @@ int	game_loop(t_game *game)
 	if (p->move_up)
 	{
 		new_x = p->pos_x + p->dir_x * move_speed;
-		new_y = p->pos_y + p->dir_y * move_speed;
-		if (!is_wall(&game->parsing, new_x, new_y))
-		{
+		if (!is_wall(&game->parsing, new_x, p->pos_y))
 			p->pos_x = new_x;
+		new_y = p->pos_y + p->dir_y * move_speed;
+		if (!is_wall(&game->parsing, p->pos_x, new_y))
 			p->pos_y = new_y;
-		}
 	}
 	if (p->move_down)
 	{
 		new_x = p->pos_x - p->dir_x * move_speed;
-		new_y = p->pos_y - p->dir_y * move_speed;
-		if (!is_wall(&game->parsing, new_x, new_y))
-		{
+		if (!is_wall(&game->parsing, new_x, p->pos_y))
 			p->pos_x = new_x;
+		new_y = p->pos_y - p->dir_y * move_speed;
+		if (!is_wall(&game->parsing, p->pos_x, new_y))
 			p->pos_y = new_y;
-		}
 	}
 	if (p->move_left)
 	{
-		new_x = p->pos_x + p->dir_y * move_speed;
-		new_y = p->pos_y - p->dir_x * move_speed;
-		if (!is_wall(&game->parsing, new_x, new_y))
-		{
+		new_x = p->pos_x - p->plane_x * move_speed;
+		if (!is_wall(&game->parsing, new_x, p->pos_y))
 			p->pos_x = new_x;
+		new_y = p->pos_y - p->plane_y * move_speed;
+		if (!is_wall(&game->parsing, p->pos_x, new_y))
 			p->pos_y = new_y;
-		}
 	}
 	if (p->move_right)
 	{
-		new_x = p->pos_x - p->dir_y * move_speed;
-		new_y = p->pos_y + p->dir_x * move_speed;
-		if (!is_wall(&game->parsing, new_x, new_y))
-		{
+		new_x = p->pos_x + p->plane_x * move_speed;
+		if (!is_wall(&game->parsing, new_x, p->pos_y))
 			p->pos_x = new_x;
+		new_y = p->pos_y + p->plane_y * move_speed;
+		if (!is_wall(&game->parsing, p->pos_x, new_y))
 			p->pos_y = new_y;
-		}
 	}
 	if (p->rotate_left)
 		rotate_p(p, -rot_speed);

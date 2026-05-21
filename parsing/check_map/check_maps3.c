@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 09:00:00 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/14 11:37:28 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:01:57 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ bool	init_map(t_parsing *parsing)
 	parsing->final_maps.max_line_length = get_max_line_length(parsing);
 	if (!redefine_map(parsing))
 		return (false);
+	if (!init_doors(parsing))
+		return (false);
 	return (true);
 }
 
@@ -112,7 +114,7 @@ bool	maj_position_player(t_parsing *parsing)
 				parsing->player.map_y = i;
 				parsing->player.map_x = j;
 				parsing->player.pos_y = i + 0.5;
-                parsing->player.pos_x = j + 0.5;
+				parsing->player.pos_x = j + 0.5;
 				return (true);
 			}
 			j++;

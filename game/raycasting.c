@@ -6,7 +6,7 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:51:17 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/20 13:59:23 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/05/21 12:32:14 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,11 @@ void	cast_ray(t_game *game)
 			tile = game->parsing.final_maps.map[map_y][map_x];
 			if (tile == '1' || tile == ' ')
 				hit = 1;
+			if (tile == 'D')
+			{
+				if (game->parsing.final_maps.door_open[map_y][map_x] == 0)
+					hit = 1;
+			}
 		}
 		if (side == 0)
 			perp_wall_dist = (map_x - p->pos_x + (1 - step_x) / 2) / ray_dir_x;
@@ -152,7 +157,12 @@ void	cast_ray(t_game *game)
 		draw_end = line_height / 2 + WIN_HEIGHT / 2;
 		if (draw_end >= WIN_HEIGHT)
 			draw_end = WIN_HEIGHT - 1;
-		tex = select_texture(game, side, ray_dir_x, ray_dir_y);
+		tile = game->parsing.final_maps.map[map_y][map_x];
+		if (tile == 'D'
+			&& game->parsing.final_maps.door_open[map_y][map_x] == 0)
+			tex = &game->door;
+		else
+			tex = select_texture(game, side, ray_dir_x, ray_dir_y);
 		if (side == 0)
 			wall_x = p->pos_y + perp_wall_dist * ray_dir_y;
 		else
