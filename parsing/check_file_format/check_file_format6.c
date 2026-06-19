@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 07:41:07 by w                 #+#    #+#             */
-/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/19 14:52:45 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,6 @@ bool	am_i_in_color_part(t_parsing *parsing, int *i)
 		return (true);
 	}
 	if (all_color_part_is_here(parsing))
-	{
-		parsing->am_i_in_color = false;
-		return (true);
-	}
-	return (false);
-}
-
-/*	================================================================	*/
-
-bool	mute_am_i_in_color_part(t_parsing *parsing, int *i)
-{
-	if (!parsing || !i || !parsing->maps || !parsing->maps[*i])
-		return (false);
-	if (is_f_color_part(parsing->maps[*i])
-		|| is_c_color_part(parsing->maps[*i]))
-	{
-		parsing->am_i_in_color = true;
-		return (true);
-	}
-	if (mute_all_color_part_is_here(parsing))
 	{
 		parsing->am_i_in_color = false;
 		return (true);

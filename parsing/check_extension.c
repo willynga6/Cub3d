@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 07:53:55 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/19 14:39:46 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool	check_last_four_char(char *str, int index_max)
 
 /*	================================================================	*/
 
-static bool	check_extension(char *str)
+bool	check_extension(char *str)
 {
 	int	i;
 	int	last_index;
@@ -62,7 +62,10 @@ static bool	check_extension(char *str)
 	if (check_last_four_char (str, last_index))
 		return (true);
 	else
+	{
+		print_error("Error: map extension has to be .cub");
 		return (false);
+	}
 }
 
 /*	================================================================	*/

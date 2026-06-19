@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:35:49 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/20 15:20:17 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/19 14:20:31 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,15 @@
 	return (0);
 }*/
 
+
 int	main(int ac, char **av)
 {
-    t_game      game;
-    t_malloc    *lst_malloc;
+	t_game		game;
+	t_malloc	*lst_malloc;
 
 	lst_malloc = NULL;
-	if (!init_lst_malloc(&lst_malloc))
+	if (!parsing(&game, av, ac, &lst_malloc))
 		return (1);
-	if (!init_parsing(av, ac, &game.parsing, &lst_malloc))
-		return (free_lst_malloc(&lst_malloc), 1);
-	if (!check_the_mapfile_format(&game.parsing))
-		return (free_lst_malloc(&lst_malloc), 1);
-	if (!flood_fill(&game.parsing, &lst_malloc))
-		return (free_lst_malloc(&lst_malloc), 1);
 	extract_player(&game.parsing);
 	if (!init_mlx(&game))
 		return (free_lst_malloc(&lst_malloc), 1);

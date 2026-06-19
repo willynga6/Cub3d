@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/21 12:02:45 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/19 14:38:22 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 /*  ====================ALL THE FUNCTION USED ====================*/
 
 /*  PARSING */
+bool	parsing(t_game *game, char **av, int ac, t_malloc **lst_malloc);
 
 /*  CHECK INIT PARSING */
 bool	init_parsing(char **av, int ac, t_parsing *parsing,
@@ -47,6 +48,7 @@ char	**get_maps(t_parsing *parsing, t_malloc **lst_malloc);
 
 /*  CHECK EXTENSION */
 bool	is_valid_extension(t_parsing *parsing);
+bool	check_extension(char *str);
 
 /*  CHECK THE FILE FORMAT */
 
@@ -55,7 +57,7 @@ bool	in_nothing_part(t_parsing *parsing);
 bool	is_empty_file(t_parsing *parsing);
 void	jump_empty_line(t_parsing *parsing, int *i);
 bool	am_i_in_texture_part(t_parsing *parsing, int *i);
-bool	mute_am_i_in_texture_part(t_parsing *parsing, int *i);
+bool	am_i_in_texture_part(t_parsing *parsing, int *i);
 bool	check_the_mapfile_format(t_parsing *parsing);
 
 /*	format 2*/

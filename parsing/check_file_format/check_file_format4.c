@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_format4.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 07:54:17 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/19 17:37:33 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/19 13:38:52 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ bool	no_case(t_parsing *parsing, char *line, int *i)
 			parsing->no_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
-		return (false);
+		else
+			return (false);
 	}
-	return (true);
+	else
+		return (true);
 }
 
 /*	================================================================	*/
@@ -61,9 +63,11 @@ bool	so_case(t_parsing *parsing, char *line, int *i)
 			parsing->so_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
-		return (false);
+		else
+			return (false);
 	}
-	return (true);
+	else
+		return (true);
 }
 
 /*	================================================================	*/
@@ -87,9 +91,11 @@ bool	we_case(t_parsing *parsing, char *line, int *i)
 			parsing->we_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
-		return (false);
+		else
+			return (false);
 	}
-	return (true);
+	else
+		return (true);
 }
 
 /*	================================================================	*/
@@ -113,16 +119,18 @@ bool	ea_case(t_parsing *parsing, char *line, int *i)
 			parsing->ea_texture = ft_strtrim(value[1], " \t\n");
 			return (true);
 		}
-		return (false);
+		else
+			return (false);
 	}
-	return (true);
+	else
+		return (true);
 }
 
 /*	================================================================	*/
 
 bool	texture_case(t_parsing *parsing, int *i)
 {
-	while (parsing->maps[*i] && mute_am_i_in_texture_part(parsing, i)
+	while (parsing->maps[*i] && am_i_in_texture_part(parsing, i)
 		&& parsing->am_i_in_texture)
 	{
 		if (!no_case(parsing, parsing->maps[*i], i))

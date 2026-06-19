@@ -2,7 +2,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -Wno-incompatible-pointer-types -g
 MLX_FLAGS = -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz
 INCLUDES = -Iincludes -Iget_next_line
 
@@ -31,6 +31,7 @@ SRCS = main.c \
 	$(TOOLSDIR)/tools1.c \
 	$(TOOLSDIR)/tools2.c \
 	$(TOOLSDIR)/tools3.c \
+	$(PARSINGDIR)/parsing.c \
 	$(PARSINGDIR)/check_extension.c \
 	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format.c \
 	$(PARSINGDIR)/$(CHECK_FILE_FORMAT)/check_file_format2.c \
