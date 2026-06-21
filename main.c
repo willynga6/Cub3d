@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:35:49 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/19 14:20:31 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/21 15:55:23 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ int	main(int ac, char **av)
 	clean_and_close(&lst_malloc, game.parsing.fd_map);
 	return (0);
 }
-

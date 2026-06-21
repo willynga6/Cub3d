@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/19 14:38:22 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/21 16:52:21 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,17 @@ bool	set_up_flood_fill(t_parsing *parsing, t_malloc **lst_malloc);
 void	real_flood_fill(t_parsing *p, int y, int x, bool *res);
 bool	flood_fill(t_parsing *parsing, t_malloc **lst_malloc);
 
+/*	INIT PLAYER */
+
+	/*	FILE 1*/
+void	init_player_int_double_value(t_player *player);
+void	extract_player(t_parsing *p);
+
+	/*	FILE 2*/
+void	init_player_dir(t_player *p, char c);
+	
+
+
 /*   CLEAN  */
 bool	init_lst_malloc(t_malloc **lst_malloc);
 void	*malloc_remix(t_malloc **lst_malloc, size_t nb_octets);
@@ -156,8 +167,6 @@ int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 int		game_loop(t_game *game);
 int		close_window(t_game *game);
-void	extract_player(t_parsing *p);
-void	init_player_dir(t_player *p, char c);
 void	rotate_p(t_player *p, double rot_spd);
 void	cast_ray(t_game *game);
 void	draw_minimap_dir(t_game *game);
@@ -165,11 +174,12 @@ void	draw_minimap_player(t_game *game);
 void	draw_minimap(t_game *game);
 int		load_all_textures(t_game *game);
 int		load_texture(t_game *game, t_texture *tex, char *path);
-int	get_texture_pixel(t_texture *tex, int x, int y);
-char *ft_strtrim(const char *s1, const char *set);
-int	mouse_move(int x, int y, t_game *game);
+int		get_texture_pixel(t_texture *tex, int x, int y);
+char	*ft_strtrim(const char *s1, const char *set);
+int		mouse_move(int x, int y, t_game *game);
 void	draw_cross_s(t_game *game);
 void	toggle_door(t_game *game);
 bool	init_doors(t_parsing *parsing);
+bool	is_player_char(char c);
 
 #endif

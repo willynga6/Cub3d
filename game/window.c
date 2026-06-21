@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 10:42:08 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/21 12:49:01 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/21 16:22:33 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	init_mlx(t_game *game)
 	if (!game->mlx.mlx)
 		return (false);
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT,
-			"cub3d");
+			"Cub3d");
 	if (!game->mlx.win)
 		return (false);
 	mlx_mouse_hide(game->mlx.mlx, game->mlx.win);
@@ -60,40 +60,7 @@ void	display_image(t_game *game)
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
 }
 
-void	extract_player(t_parsing *p)
-{
-	int	x;
-	int	y;
 
-	p->player.move_up = 0;
-	p->player.move_down = 0;
-	p->player.move_left = 0;
-	p->player.move_right = 0;
-	p->player.rotate_left = 0;
-	p->player.rotate_right = 0;
-	y = 0;
-	while (p->final_maps.map[y])
-	{
-		x = 0;
-		while (p->final_maps.map[y][x])
-		{
-			if (p->final_maps.map[y][x] == 'N' || p->final_maps.map[y][x] == 'S'
-				|| p->final_maps.map[y][x] == 'E'
-				|| p->final_maps.map[y][x] == 'W')
-			{
-				init_player_dir(&p->player, p->final_maps.map[y][x]);
-				p->player.pos_x = x + 0.5;
-				p->player.pos_y = y + 0.5;
-				p->player.map_x = x;
-				p->player.map_y = y;
-				p->final_maps.map[y][x] = '0';
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 void	draw_square(t_game *game, int map_x, int map_y, int color)
 {

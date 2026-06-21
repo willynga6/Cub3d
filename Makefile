@@ -16,6 +16,7 @@ PARSINGDIR = parsing
 CHECK_FILE_FORMAT = check_file_format
 CHECK_MAP = check_map
 INIT_PARSING = init_parsing
+INIT_PLAYER = init_player
 TOOLSDIR = tools
 GNL = get_next_line
 GAMEDIR = game
@@ -48,6 +49,8 @@ SRCS = main.c \
 	$(PARSINGDIR)/$(CHECK_MAP)/check_maps4.c \
 	$(PARSINGDIR)/$(INIT_PARSING)/init_parsing.c \
 	$(PARSINGDIR)/$(INIT_PARSING)/init_parsing2.c \
+	$(PARSINGDIR)/$(INIT_PLAYER)/init_player.c \
+	$(PARSINGDIR)/$(INIT_PLAYER)/init_player2.c \
 	$(GNL)/get_next_line.c \
 	$(GNL)/get_next_line_utils.c \
 	$(CLEANDIR)/malloc.c

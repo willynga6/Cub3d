@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 07:59:25 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 08:40:16 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/21 15:38:16 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,14 @@ bool	is_empty_line(char *line)
 		i++;
 	}
 	return (true);
+}
+
+/*	================================================================	*/
+
+bool	is_player_char(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (true);
+	else
+		return (false);
 }
