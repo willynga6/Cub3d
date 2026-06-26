@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_maps4.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/12 09:25:37 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/14 11:43:25 by otidahoh         ###   ########.fr       */
+/*   Created: 2026/06/24 13:52:11 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 18:13:41 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	replace_pos_by_zero(t_parsing *parsing)
 {
 	if (!parsing || !parsing->maps || !parsing->player.flood_f_map)
 		return ;
-	parsing->player.flood_f_map[parsing->player.map_y][parsing->player.map_x] = '0';
+	parsing->player.flood_f_map[parsing->player.map_y]
+	[parsing->player.map_x] = '0';
 }
 
 /*	================================================================	*/
@@ -41,24 +42,31 @@ bool	set_up_flood_fill(t_parsing *parsing, t_malloc **lst_malloc)
 
 /*	================================================================	*/
 
+static bool	stop_recursing_conditions(t_parsing *p, int y, int x, bool *res)
+{
+	if (y < 0 || y >= p->final_maps.nb_lines)
+		return (true);
+	if (!p->player.flood_f_map[y])
+	{
+		*res = false;
+		return (true);
+	}
+	if (x < 0 || x >= (int)ft_strlen(p->player.flood_f_map[y]))
+	{
+		*res = false;
+		return (true);
+	}
+	return (false);
+}
+
 void	real_flood_fill(t_parsing *p, int y, int x, bool *res)
 {
 	char	c;
 
 	if (!p || !p->player.flood_f_map || !res || !*res)
 		return ;
-	if (y < 0 || y >= p->final_maps.nb_lines)
+	if (stop_recursing_conditions(p, y, x, res))
 		return ;
-	if (!p->player.flood_f_map[y])
-	{
-		*res = false;
-		return ;
-	}
-	if (x < 0 || x >= (int)ft_strlen(p->player.flood_f_map[y]))
-	{
-		*res = false;
-		return ;
-	}
 	c = p->player.flood_f_map[y][x];
 	if (c == ' ' || c == '\0')
 	{
@@ -74,7 +82,6 @@ void	real_flood_fill(t_parsing *p, int y, int x, bool *res)
 	real_flood_fill(p, y, x +1, res);
 	real_flood_fill(p, y, x -1, res);
 }
-
 
 /*	================================================================	*/
 
@@ -93,5 +100,3 @@ bool	flood_fill(t_parsing *parsing, t_malloc **lst_malloc)
 		return (false);
 	return (res_flood);
 }
-
-/*	================================================================	*/

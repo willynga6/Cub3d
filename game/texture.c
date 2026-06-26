@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 13:12:47 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/05/21 12:45:11 by otidahoh         ###   ########.fr       */
+/*   Created: 2026/06/24 15:35:21 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 14:16:49 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include <string.h>
+
+/*	================================================================	*/
 
 static int	is_in_set(char c, const char *set)
 {
@@ -26,6 +28,8 @@ static int	is_in_set(char c, const char *set)
 	}
 	return (0);
 }
+
+/*	================================================================	*/
 
 char	*ft_strtrim(const char *s1, const char *set)
 {
@@ -54,6 +58,8 @@ char	*ft_strtrim(const char *s1, const char *set)
 	return (res);
 }
 
+/*	================================================================	*/
+
 int	load_texture(t_game *game, t_texture *tex, char *path)
 {
 	if (!game || !tex || !path)
@@ -72,20 +78,5 @@ int	load_texture(t_game *game, t_texture *tex, char *path)
 		printf("Error: failed to get texture data: %s\n", path);
 		return (0);
 	}
-	return (1);
-}
-
-int	load_all_textures(t_game *game)
-{
-	if (!load_texture(game, &game->no, game->parsing.no_texture))
-		return (0);
-	if (!load_texture(game, &game->so, game->parsing.so_texture))
-		return (0);
-	if (!load_texture(game, &game->we, game->parsing.we_texture))
-		return (0);
-	if (!load_texture(game, &game->ea, game->parsing.ea_texture))
-		return (0);
-	if (!load_texture(game, &game->door, "textures/door.xpm"))
-		return (0);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 07:17:12 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/19 14:05:51 by otidahoh         ###   ########.fr       */
+/*   Created: 2026/06/24 13:52:03 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 18:15:10 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static bool	init_int_value(int ac, char **av, t_parsing *parsing,
 	return (true);
 }
 
-/*	==================
-==============================================	*/
+/*	================================================================	*/
 
 static bool	init_char_value(char **av, t_parsing *parsing,
 	t_malloc **lst_malloc)
@@ -93,6 +92,11 @@ static void	init_bool_value(t_parsing *parsing)
 bool	init_parsing(char **av, int ac,
 	t_parsing *parsing, t_malloc **lst_malloc)
 {
+	if (!parsing || !av || !lst_malloc)
+	{
+		print_error("Error: bad structure adress");
+		return (false);
+	}
 	if (!init_int_value (ac, av, parsing, lst_malloc))
 		return (false);
 	if (!init_char_value (av, parsing, lst_malloc))
@@ -109,6 +113,8 @@ int	count_lines(char *filename, t_malloc **lst_malloc)
 	int		line_count;
 	char	*line;
 
+	if (!filename || !lst_malloc)
+		return (-1);
 	line_count = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)

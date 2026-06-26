@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 08:42:11 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/19 13:34:08 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:53:34 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 18:01:02 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	jump_empty_line(t_parsing *parsing, int *i)
 
 /*	================================================================	*/
 
-
 bool	am_i_in_texture_part(t_parsing *parsing, int *i)
 {
 	char	first_two_char[3];
@@ -56,35 +55,4 @@ bool	am_i_in_texture_part(t_parsing *parsing, int *i)
 		return (true);
 	}
 	return (false);
-}
-
-/*	================================================================	*/
-
-bool	check_the_mapfile_format(t_parsing *parsing)
-{
-	int	i;
-
-	i = 0;
-	if (!parsing || !parsing->maps)
-		return (print_error("Error: bad structure adress"), false);
-	jump_empty_line(parsing, &i);
-	if (is_empty_file(parsing))
-		return (required_format(), false);
-	if (!am_i_in_texture_part(parsing, &i))
-		return (required_format(), false);
-	if (!texture_case(parsing, &i))
-		return (false);
-	jump_empty_line(parsing, &i);
-	if (!am_i_in_color_part(parsing, &i))
-		return (required_format(), false);
-	if (!color_case(parsing, &i))
-		return (false);
-	jump_empty_line(parsing, &i);
-	if (!map_case(parsing, &i))
-		return (false);
-	if (!quick_check_map_format(parsing))
-		return (false);
-	if (!init_map(parsing))
-		return (false);
-	return (true);
 }

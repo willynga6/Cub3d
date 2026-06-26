@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/13 09:46:46 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/06/21 16:00:39 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/26 14:17:16 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 14:17:19 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-
 
 void	rotate_p(t_player *p, double rot_spd)
 {
@@ -32,6 +30,8 @@ int	mouse_move(int x, int y, t_game *game)
 	int			delta_x;
 	double		center_x;
 
+	if (!game)
+		return (0);
 	(void)y;
 	center_x = WIN_WIDTH / 2;
 	delta_x = x - center_x;

@@ -5,33 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 06:35:49 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/21 15:55:23 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:50:15 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 17:13:51 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "get_next_line.h"
 #include "structure.h"
+#include <string.h>
 
-/*int	main(int ac, char **av)
+static bool	handle_mlx_hook(t_game *game)
 {
-	t_parsing	parsing;
-	t_malloc	*lst_malloc;
-	t_game		game;
-	t_malloc	*lst_malloc;
-
-	lst_malloc = NULL;
-	if (!init_lst_malloc(&lst_malloc))
-		return (1);
-	if (!init_parsing (av, ac, &parsing, &lst_malloc))
-		return (free_lst_malloc(&lst_malloc), 1);
-	check_the_mapfile_format(&parsing);
-	flood_fill(&parsing, &lst_malloc);
-	clean_and_close(&lst_malloc, parsing.fd_map);
-	return (0);
-}*/
-
+	if (!game)
+	{
+		print_error ("GAME not found !\n");
+		return (false);
+	}
+	mlx_hook(game->mlx.win, 6, 1L << 6, mouse_move, game);
+	mlx_hook(game->mlx.win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->mlx.win, 4, 1L << 2, mouse_press, game);
+	mlx_hook(game->mlx.win, 3, 1L << 1, key_release, game);
+	mlx_hook(game->mlx.win, 17, 0, close_window, game);
+	return (true);
+}
 
 int	main(int ac, char **av)
 {
@@ -39,9 +36,9 @@ int	main(int ac, char **av)
 	t_malloc	*lst_malloc;
 
 	lst_malloc = NULL;
+	memset(&game, 0, sizeof(t_game));
 	if (!parsing(&game, av, ac, &lst_malloc))
 		return (1);
-	extract_player(&game.parsing);
 	if (!init_mlx(&game))
 		return (free_lst_malloc(&lst_malloc), 1);
 	game.prev_ms_x = WIN_WIDTH / 2;
@@ -49,13 +46,13 @@ int	main(int ac, char **av)
 		game.mlx.win,
 		WIN_WIDTH / 2,
 		WIN_HEIGHT / 2);
-	mlx_hook(game.mlx.win, 6, 1L << 6, mouse_move, &game);
 	if (!load_all_textures(&game))
 		return (1);
 	init_image(&game);
-	mlx_hook(game.mlx.win, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.mlx.win, 3, 1L << 1, key_release, &game);
-	mlx_hook(game.mlx.win, 17, 0, close_window, &game);
+	game_loop_init(&game);
+	game.last_time = get_time();
+	if (!handle_mlx_hook (&game))
+		return (1);
 	mlx_loop_hook(game.mlx.mlx, game_loop, &game);
 	mlx_loop(game.mlx.mlx);
 	clean_and_close(&lst_malloc, game.parsing.fd_map);

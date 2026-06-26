@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 15:42:27 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/21 16:54:30 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:51:27 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 18:13:57 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "get_next_line.h"
 #include "structure.h"
 
-/*  ================================================    */
+/* ================================================ */
 
 static void	north_case_direction(t_player *player)
 {
@@ -26,40 +26,48 @@ static void	north_case_direction(t_player *player)
 	player->plane_y = 0;
 }
 
-/*  ================================================    */
+/* ================================================ */
 
 static void	south_case_direction(t_player *player)
 {
+	if (!player)
+		return ;
 	player->dir_x = 0;
 	player->dir_y = 1;
 	player->plane_x = -0.66;
 	player->plane_y = 0;
 }
 
-/*  ================================================    */
+/* ================================================ */
 
 static void	est_case_direction(t_player *player)
 {
+	if (!player)
+		return ;
 	player->dir_x = 1;
 	player->dir_y = 0;
 	player->plane_x = 0;
 	player->plane_y = 0.66;
 }
 
-/*  ================================================    */
+/* ================================================ */
 
 static void	west_case_direction(t_player *player)
 {
+	if (!player)
+		return ;
 	player->dir_x = -1;
 	player->dir_y = 0;
 	player->plane_x = 0;
 	player->plane_y = -0.66;
 }
 
-/*  ================================================    */
+/* ================================================ */
 
 void	init_player_dir(t_player *p, char c)
 {
+	if (!p)
+		return ;
 	if (c == 'N')
 		north_case_direction (p);
 	else if (c == 'S')

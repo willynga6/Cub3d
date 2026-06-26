@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 11:38:24 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/08 10:00:11 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:48:14 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/24 13:48:59 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ int	main(void)
 	{
 		printf("Erreur ouverture fichier\n");
 		return (-1);
-	}
+}
 	lecture = "go";
 	while (lecture)
 	{
 		lecture = get_next_line(fd);
 		printf("%s", lecture);
 		free(lecture);
-	}
+}
 	return (0);
 }
 */

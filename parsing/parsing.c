@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 06:34:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/19 14:37:34 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:51:07 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 17:55:00 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ bool	parsing(t_game *game, char **av, int ac, t_malloc **lst_malloc)
 		return (free_lst_malloc(lst_malloc), false);
 	if (!flood_fill(&game->parsing, lst_malloc))
 		return (free_lst_malloc(lst_malloc), false);
+	extract_player(&game->parsing);
 	return (true);
 }

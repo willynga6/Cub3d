@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/12 09:00:00 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/19 13:48:03 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:52:17 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 18:11:57 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,7 @@ bool	maj_position_player(t_parsing *parsing)
 		j = 0;
 		while (parsing->maps[i][j])
 		{
-			if (parsing->maps[i][j] == 'N' || parsing->maps[i][j] == 'S'
-				|| parsing->maps[i][j] == 'E' || parsing->maps[i][j] == 'W')
+			if (is_player_char(parsing->maps[i][j]))
 			{
 				parsing->player.map_y = i;
 				parsing->player.map_x = j;

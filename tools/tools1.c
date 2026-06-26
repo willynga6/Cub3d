@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 07:59:25 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/21 15:38:16 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:50:47 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 17:32:00 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	display_parsing(const t_parsing *parsing)
 	if (!parsing)
 	{
 		print_error("Error: bad structure adress");
-		return ;
-	}
+		return;
+}
 	printf("==== PARSING DEBUG ====\n");
 	printf("ac: %d\n", parsing->ac);
 	printf("maps_path: %s\n", parsing->maps_path ? parsing->maps_path :
@@ -75,8 +75,8 @@ void	display_parsing(const t_parsing *parsing)
 			else
 				printf("maps[%d]\t: %s", i, parsing->maps[i]);
 			i++;
-		}
-	}
+}
+}
 	printf("=======================\n");
 }
 */

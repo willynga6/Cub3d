@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/21 15:26:44 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/21 16:19:44 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:51:33 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 18:14:07 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,24 @@ void	init_player_int_double_value(t_player *player)
 
 /*	==========================================================	*/
 
+static void	update_player_pos(t_player *player, int x, int y)
+{
+	if (!player)
+		return ;
+	player->map_x = x;
+	player->map_y = y;
+	player->pos_x = x + 0.5;
+	player->pos_y = y + 0.5;
+}
+
 void	extract_player(t_parsing *p)
 {
 	int	x;
 	int	y;
 
-	init_player_int_double_value(p);
+	if (!p || !p->final_maps.map)
+		return ;
+	init_player_int_double_value(&p->player);
 	y = 0;
 	while (p->final_maps.map[y])
 	{
@@ -68,10 +80,7 @@ void	extract_player(t_parsing *p)
 			if (is_player_char(p->final_maps.map[y][x]))
 			{
 				init_player_dir(&p->player, p->final_maps.map[y][x]);
-				p->player.pos_x = x + 0.5;
-				p->player.pos_y = y + 0.5;
-				p->player.map_x = x;
-				p->player.map_y = y;
+				update_player_pos(&p->player, x, y);
 				p->final_maps.map[y][x] = '0';
 				return ;
 			}

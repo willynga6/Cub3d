@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/10 09:35:23 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 10:15:34 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:50:32 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 20:41:22 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	**duplicate_maps(t_parsing *parsing, t_malloc **lst_malloc)
 		return (NULL);
 	original_maps = parsing->final_maps.map;
 	maps_copy = malloc_remix(lst_malloc,
-			sizeof(char *) * (parsing->final_maps.nb_lines) + 1);
+			sizeof(char *) * (parsing->final_maps.nb_lines + 1));
 	if (!maps_copy)
 		return (NULL);
 	i = 0;

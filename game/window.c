@@ -5,25 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/12 10:42:08 by otidahoh          #+#    #+#             */
-/*   Updated: 2026/06/21 16:22:33 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:54:13 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/24 13:58:00 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*	=====================================================================	*/
+
 bool	init_mlx(t_game *game)
 {
+	if (!game)
+		return (false);
 	game->mlx.mlx = mlx_init();
 	if (!game->mlx.mlx)
 		return (false);
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT,
-			"Cub3d");
+			"Cub3D");
 	if (!game->mlx.win)
 		return (false);
 	mlx_mouse_hide(game->mlx.mlx, game->mlx.win);
 	return (true);
 }
+
+/*	=====================================================================	*/
 
 void	init_image(t_game *game)
 {
@@ -31,6 +37,8 @@ void	init_image(t_game *game)
 	game->mlx.addr = mlx_get_data_addr(game->mlx.img, &game->mlx.bits_per_pixel,
 			&game->mlx.line_length, &game->mlx.endian);
 }
+
+/*	=====================================================================	*/
 
 int	get_texture_pixel(t_texture *tex, int x, int y)
 {
@@ -44,6 +52,8 @@ int	get_texture_pixel(t_texture *tex, int x, int y)
 	return (*(unsigned int *)dst);
 }
 
+/*	=====================================================================	*/
+
 void	put_pixel(t_game *game, int x, int y, int color)
 {
 	char	*dst;
@@ -55,78 +65,9 @@ void	put_pixel(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+/*	=====================================================================	*/
+
 void	display_image(t_game *game)
 {
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
-}
-
-
-
-void	draw_square(t_game *game, int map_x, int map_y, int color)
-{
-	int	x;
-	int	y;
-	int	start_x;
-	int	start_y;
-
-	start_x = map_x * TILE_SIZE;
-	start_y = map_y * TILE_SIZE;
-	y = 0;
-	while (y < TILE_SIZE)
-	{
-		x = 0;
-		while (x < TILE_SIZE)
-		{
-			put_pixel(game, start_x + x, start_y + y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_ceiling_and_floor(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			if (y < WIN_HEIGHT / 2)
-				put_pixel(game, x, y, 0x3B2F2F);
-			else
-				put_pixel(game, x, y, 0x5C4033);
-			x++;
-		}
-		y++;
-	}
-}
-
-int	render_frame(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			put_pixel(game, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	draw_ceiling_and_floor(game);
-	cast_ray(game);
-	draw_minimap(game);
-	draw_minimap_player(game);
-	draw_minimap_dir(game);
-	draw_cross_s(game);
-	display_image(game);
-	return (0);
 }

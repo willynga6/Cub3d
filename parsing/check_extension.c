@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 06:34:10 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/19 14:39:46 by wngambi          ###   ########.fr       */
+/*   Created: 2026/06/24 13:51:17 by wngambi           #+#    #+#             */
+/*   Updated: 2026/06/26 17:55:13 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
 #include "get_next_line.h"
+
+/*	================================================================	*/
 
 static void	extension_error_msg(void)
 {
