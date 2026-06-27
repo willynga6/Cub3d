@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 18:32:44 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 12:24:15 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,15 @@ struct						s_parsing
 
 /*	================================================================	*/
 
-/*struct s_malloc
+typedef struct s_draw_line
 {
-	struct s_malloc	*next;
-	void			*adr_malloc;
-};*/
+	int		x;
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+}	t_draw_line;
 
 /*	================================================================	*/
 

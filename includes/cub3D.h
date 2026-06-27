@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 20:35:54 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 12:36:52 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,13 +166,10 @@ void		perform_dda(t_game *game);
 void		compute_wall_projection(t_game *game);
 void		compute_tex_x(t_game *game, t_texture *tex);
 t_texture	*select_texture(t_game *game, int side, double ray_dir_x,
-																double ray_dir_y);
-void		draw_texture_line(t_game *game, t_texture *tex, int x,
-							int draw_start, int draw_end, int tex_x,
-							double step, double tex_pos);
-void		draw_texture_line_trans(t_game *game, t_texture *tex, int x,
-							int draw_start, int draw_end, int tex_x,
-							double step, double tex_pos);
+				double ray_dir_y);
+void		draw_texture_line(t_game *game, t_texture *tex, t_draw_line *d);
+void		draw_texture_line_trans(t_game *game, t_texture *tex,
+				t_draw_line *d);
 t_texture	*get_hit_texture(t_game *game);
 void		draw_wall_hit(t_game *game);
 void		compute_open_door_projection(t_game *game);

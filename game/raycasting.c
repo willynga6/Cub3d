@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 14:17:41 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 20:35:54 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 12:29:07 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
@@ -35,49 +34,47 @@ static int	is_transparent(int color)
 	return (color == 0 || color == (int)0xFF000000);
 }
 
-void	draw_texture_line(t_game *game, t_texture *tex, int x, int draw_start,
-		int draw_end, int tex_x, double step, double tex_pos)
+void	draw_texture_line(t_game *game, t_texture *tex, t_draw_line *d)
 {
 	int	y;
 	int	tex_y;
 	int	color;
 
-	y = draw_start;
-	while (y < draw_end)
+	y = d->draw_start;
+	while (y < d->draw_end)
 	{
-		tex_y = (int)tex_pos;
+		tex_y = (int)d->tex_pos;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		tex_pos += step;
+		d->tex_pos += d->step;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		color = get_texture_pixel(tex, tex_x, tex_y);
-		put_pixel(game, x, y, color);
+		color = get_texture_pixel(tex, d->tex_x, tex_y);
+		put_pixel(game, d->x, y, color);
 		y++;
 	}
 }
 
-void	draw_texture_line_trans(t_game *game, t_texture *tex, int x,
-		int draw_start, int draw_end, int tex_x, double step, double tex_pos)
+void	draw_texture_line_trans(t_game *game, t_texture *tex, t_draw_line *d)
 {
 	int	y;
 	int	tex_y;
 	int	color;
 
-	y = draw_start;
-	while (y < draw_end)
+	y = d->draw_start;
+	while (y < d->draw_end)
 	{
-		tex_y = (int)tex_pos;
+		tex_y = (int)d->tex_pos;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		tex_pos += step;
-		color = get_texture_pixel(tex, tex_x, tex_y);
+		d->tex_pos += d->step;
+		color = get_texture_pixel(tex, d->tex_x, tex_y);
 		if (!is_transparent(color))
-			put_pixel(game, x, y, color);
+			put_pixel(game, d->x, y, color);
 		y++;
 	}
 }

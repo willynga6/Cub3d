@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 20:26:52 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 20:28:31 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 12:40:58 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	draw_wall_hit(t_game *game)
 {
 	t_raycasting	*r;
 	t_texture		*tex;
+	t_draw_line		d;
 
 	r = &game->ray;
 	compute_wall_projection(game);
@@ -43,8 +44,13 @@ void	draw_wall_hit(t_game *game)
 	r->step = (double)tex->height / (double)r->line_height;
 	r->tex_pos = (r->draw_start - WIN_HEIGHT / 2
 			+ r->line_height / 2) * r->step;
-	draw_texture_line(game, tex, r->x, r->draw_start, r->draw_end,
-		r->tex_x, r->step, r->tex_pos);
+	d.x = r->x;
+	d.draw_start = r->draw_start;
+	d.draw_end = r->draw_end;
+	d.tex_x = r->tex_x;
+	d.step = r->step;
+	d.tex_pos = r->tex_pos;
+	draw_texture_line(game, tex, &d);
 }
 
 /*  ============================================================    */
@@ -96,6 +102,7 @@ void	draw_open_door_if_needed(t_game *game)
 {
 	t_raycasting	*r;
 	t_texture		*tex;
+	t_draw_line		d;
 
 	r = &game->ray;
 	if (r->door_found == 0)
@@ -106,6 +113,11 @@ void	draw_open_door_if_needed(t_game *game)
 	r->step = (double)tex->height / (double)r->line_height;
 	r->tex_pos = (r->draw_start - WIN_HEIGHT / 2
 			+ r->line_height / 2) * r->step;
-	draw_texture_line_trans(game, tex, r->x, r->draw_start, r->draw_end,
-		r->tex_x, r->step, r->tex_pos);
+	d.x = r->x;
+	d.draw_start = r->draw_start;
+	d.draw_end = r->draw_end;
+	d.tex_x = r->tex_x;
+	d.step = r->step;
+	d.tex_pos = r->tex_pos;
+	draw_texture_line_trans(game, tex, &d);
 }
