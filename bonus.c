@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:50:21 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 20:53:00 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 14:22:02 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static bool	handle_mlx_hook(t_game *game)
 		print_error ("GAME not found !\n");
 		return (false);
 	}
-	mlx_hook(game->mlx.win, 6, 1L << 6, mouse_move, game);
-	mlx_hook(game->mlx.win, 2, 1L << 0, key_press, game);
-	mlx_hook(game->mlx.win, 4, 1L << 2, mouse_press, game);
-	mlx_hook(game->mlx.win, 3, 1L << 1, key_release, game);
-	mlx_hook(game->mlx.win, 17, 0, close_window, game);
+	mlx_hook(game->mlx.win, 6, 1L << 6, (void *)mouse_move, game);
+	mlx_hook(game->mlx.win, 2, 1L << 0, (void *)key_press, game);
+	mlx_hook(game->mlx.win, 4, 1L << 2, (void *)mouse_press, game);
+	mlx_hook(game->mlx.win, 3, 1L << 1, (void *)key_release, game);
+	mlx_hook(game->mlx.win, 17, 0, (void *)close_window, game);
 	return (true);
 }
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av)
 	init_image(&game);
 	if (!handle_mlx_hook (&game))
 		return (1);
-	mlx_loop_hook(game.mlx.mlx, game_loop_bonus, &game);
+	mlx_loop_hook(game.mlx.mlx, (void *)game_loop_bonus, &game);
 	mlx_loop(game.mlx.mlx);
 	clean_and_close(&lst_malloc, game.parsing.fd_map);
 	return (0);

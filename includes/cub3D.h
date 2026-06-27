@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 12:36:52 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/27 15:05:25 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define TILE_SIZE 32
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define MM_SCALE 4
+# define MM_SCALE 8
 # define MM_OFFSET_X 10
 # define MM_OFFSET_Y 10
 # define LEFT_CLICK 1
