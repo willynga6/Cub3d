@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:54:13 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/24 13:58:00 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 13:29:21 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	init_mlx(t_game *game)
 			"Cub3D");
 	if (!game->mlx.win)
 		return (false);
-	mlx_mouse_hide(game->mlx.mlx, game->mlx.win);
+	mlx_mouse_hide(game->mlx.mlx, game->mlx.win);//
 	return (true);
 }
 
