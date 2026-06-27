@@ -41,6 +41,8 @@ static bool	init_int_value(int ac, char **av, t_parsing *parsing,
 	if (parsing->nb_lines <= 0)
 	{
 		printf("Error the file is empty or can't be read\n");
+		close(parsing->fd_map);
+		parsing->fd_map = -1;
 		return (false);
 	}
 	return (true);
@@ -97,6 +99,7 @@ bool	init_parsing(char **av, int ac,
 		print_error("Error: bad structure adress");
 		return (false);
 	}
+	parsing->fd_map = -1;
 	if (!init_int_value (ac, av, parsing, lst_malloc))
 		return (false);
 	if (!init_char_value (av, parsing, lst_malloc))

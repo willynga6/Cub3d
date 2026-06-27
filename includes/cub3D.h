@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 15:05:25 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 17:52:59 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,10 @@ void		draw_cross_s(t_game *game);
 void		toggle_door(t_game *game);
 bool		init_doors(t_parsing *parsing);
 bool		is_player_char(char c);
+
+/*	CLEAN	*/
+void		free_lst_malloc(t_malloc **lst_malloc);
+void		clean_mlx_and_malloc_lst(t_game *game, t_malloc **lst_malloc);
 
 /*	BONUS 	*/
 

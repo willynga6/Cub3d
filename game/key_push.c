@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 14:19:37 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 14:20:16 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 17:49:14 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 int	close_window(t_game *game)
 {
-	(void)game;
+	if (game)
+		clean_mlx_and_malloc_lst(game, &game->lst_malloc);
 	exit(0);
 	return (0);
 }
@@ -23,7 +24,7 @@ int	close_window(t_game *game)
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
-		exit(0);
+		close_window(game);
 	if (keycode == 101)
 		toggle_door(game);
 	if (keycode == 114 && game->gun.ammunition < 10
@@ -51,7 +52,7 @@ int	key_press(int keycode, t_game *game)
 int	key_release(int keycode, t_game *game)
 {
 	if (keycode == 65307)
-		exit(0);
+		close_window(game);
 	if (keycode == 119 || keycode == 65362)
 		game->parsing.player.move_up = 0;
 	if (keycode == 115 || keycode == 65364)

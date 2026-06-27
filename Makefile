@@ -68,6 +68,7 @@ SRCS = 	$(GAMEDIR)/window.c \
 		$(GNL)/get_next_line.c \
 		$(GNL)/get_next_line_utils.c \
 		$(CLEANDIR)/malloc.c \
+		$(CLEANDIR)/clean.c \
 		$(BONUSDIR)/gun_texture.c \
 		$(BONUSDIR)/gun_texture2.c \
 		$(BONUSDIR)/gun.c \

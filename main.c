@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:50:15 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 14:21:18 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 18:02:45 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av)
 	memset(&game, 0, sizeof(t_game));
 	if (!parsing(&game, av, ac, &lst_malloc))
 		return (1);
+	game.lst_malloc = lst_malloc;
 	if (!init_mlx(&game))
 		return (free_lst_malloc(&lst_malloc), 1);
 	game.prev_ms_x = WIN_WIDTH / 2;
@@ -47,14 +48,14 @@ int	main(int ac, char **av)
 		WIN_WIDTH / 2,
 		WIN_HEIGHT / 2);
 	if (!load_all_textures(&game))
-		return (1);
+		return (clean_mlx_and_malloc_lst(&game, &lst_malloc), 1);
 	init_image(&game);
 	game_loop_init(&game);
 	game.last_time = get_time();
 	if (!handle_mlx_hook (&game))
-		return (1);
+		return (clean_mlx_and_malloc_lst(&game, &lst_malloc), 1);
 	mlx_loop_hook(game.mlx.mlx, (void *)game_loop, &game);
 	mlx_loop(game.mlx.mlx);
-	clean_and_close(&lst_malloc, game.parsing.fd_map);
+	clean_mlx_and_malloc_lst(&game, &lst_malloc);
 	return (0);
 }

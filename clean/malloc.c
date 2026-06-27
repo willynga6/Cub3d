@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 16:49:29 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 18:15:23 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 18:03:51 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,6 @@ void	*malloc_remix(t_malloc **lst_malloc, size_t nb_octets)
 		return (NULL);
 	}
 	return (adress_data);
-}
-
-/*	================================================================	*/
-
-void	free_lst_malloc(t_malloc **lst_malloc)
-{
-	t_malloc	*current;
-	t_malloc	*next;
-
-	if (!lst_malloc || !*lst_malloc)
-		return ;
-	current = *lst_malloc;
-	while (current)
-	{
-		next = current->next;
-		free(current->adr_malloc);
-		free(current);
-		current = next;
-	}
-	*lst_malloc = NULL;
 }
 
 /*	================================================================	*/
