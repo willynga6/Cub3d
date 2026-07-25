@@ -6,15 +6,13 @@
 /*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 20:26:52 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 12:40:58 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/07/25 10:16:26 by otidahoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "get_next_line.h"
 #include "structure.h"
-
-// Desinner le mur ou la porte fermee
 
 t_texture	*get_hit_texture(t_game *game)
 {
