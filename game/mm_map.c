@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 14:18:33 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 14:19:12 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/06/27 15:06:19 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	draw_minimap_player(t_game *game)
 
 	px = game->parsing.player.pos_x * MM_SCALE;
 	py = game->parsing.player.pos_y * MM_SCALE;
-	i = -1;
-	while (i <= 1)
+	i = -3;
+	while (i <= 3)
 	{
-		j = -1;
-		while (j <= 1)
+		j = -3;
+		while (j <= 3)
 		{
 			put_pixel(game, MM_OFFSET_X + px + i, MM_OFFSET_Y + py + j,
 				0xFF0000);

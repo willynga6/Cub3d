@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 12:36:52 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/27 17:52:59 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define TILE_SIZE 32
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define MM_SCALE 4
+# define MM_SCALE 8
 # define MM_OFFSET_X 10
 # define MM_OFFSET_Y 10
 # define LEFT_CLICK 1
@@ -207,6 +207,10 @@ void		draw_cross_s(t_game *game);
 void		toggle_door(t_game *game);
 bool		init_doors(t_parsing *parsing);
 bool		is_player_char(char c);
+
+/*	CLEAN	*/
+void		free_lst_malloc(t_malloc **lst_malloc);
+void		clean_mlx_and_malloc_lst(t_game *game, t_malloc **lst_malloc);
 
 /*	BONUS 	*/
 

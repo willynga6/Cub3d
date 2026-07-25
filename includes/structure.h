@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:37:02 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 12:24:15 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/27 17:56:11 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ typedef struct s_map		t_map;
 typedef struct s_malloc		t_malloc;
 typedef struct s_player		t_player;
 typedef struct s_parsing	t_parsing;
+
+/*	================================================================	*/
+
+struct s_malloc
+{
+	struct s_malloc	*next;
+	void			*adr_malloc;
+};
 
 /*	================================================================	*/
 
@@ -217,6 +225,7 @@ typedef struct s_game
 	t_door					door;
 	t_game_loop				game_loop;
 	t_raycasting			ray;
+	t_malloc				*lst_malloc;
 }							t_game;
 
 #endif

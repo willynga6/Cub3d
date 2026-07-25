@@ -44,16 +44,21 @@ static bool	check_the_mapfile_format_bonus(t_parsing *parsing)
 
 bool	parsing_bonus(t_game *game, char **av, int ac, t_malloc **lst_malloc)
 {
+	if (ac != 2)
+	{
+		printf("Program need two arguments to run: ./cub3D path/of/map.cub\n");
+		return (false);
+	}
 	if (!check_extension(av[1]))
 		return (false);
 	if (!init_lst_malloc(lst_malloc))
 		return (false);
 	if (!init_parsing(av, ac, &game->parsing, lst_malloc))
-		return (free_lst_malloc(lst_malloc), false);
+		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
 	if (!check_the_mapfile_format_bonus(&game->parsing))
-		return (free_lst_malloc(lst_malloc), false);
+		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
 	if (!flood_fill(&game->parsing, lst_malloc))
-		return (free_lst_malloc(lst_malloc), false);
+		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
 	extract_player(&game->parsing);
 	return (true);
 }

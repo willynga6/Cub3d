@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otidahoh <otidahoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 10:24:31 by wngambi           #+#    #+#             */
-/*   Updated: 2026/05/12 17:34:27 by otidahoh         ###   ########.fr       */
+/*   Updated: 2026/06/27 17:53:53 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <structure.h>
 
 /* Forward declaration to avoid circular includes */
-typedef struct s_malloc
-{
-	struct s_malloc	*next;
-	void			*adr_malloc;
-}					t_malloc;
 
 void	*malloc_remix(t_malloc **lst_malloc, size_t nb_octets);
 
