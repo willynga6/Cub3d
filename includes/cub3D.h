@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 06:34:54 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 17:52:59 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/25 09:59:57 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ bool		check_extension(char *str);
 bool		in_nothing_part(t_parsing *parsing);
 bool		is_empty_file(t_parsing *parsing);
 void		jump_empty_line(t_parsing *parsing, int *i);
-bool		am_i_in_texture_part(t_parsing *parsing, int *i);
-bool		check_the_mapfile_format(t_parsing *parsing);
+bool		am_i_in_texture_part(t_parsing *parsing, int *i,
+				t_malloc **lst_malloc);
+bool		check_the_mapfile_format(t_parsing *parsing, t_malloc **lst_malloc);
 
 /*	format 2*/
 bool		is_no_texture_part(char *line);
@@ -155,6 +156,7 @@ void		print_error(const char *message);
 void		required_format(void);
 void		clean_and_close(t_malloc **lst_malloc, int fd);
 int			ft_strlen(char *s);
+char		*get_word(char *str, t_malloc **lst_malloc);
 
 /*		RAYCASTING	*/
 void		init_ray(t_game *game);
@@ -211,6 +213,10 @@ bool		is_player_char(char c);
 /*	CLEAN	*/
 void		free_lst_malloc(t_malloc **lst_malloc);
 void		clean_mlx_and_malloc_lst(t_game *game, t_malloc **lst_malloc);
+void		free_texture_paths(t_game *game);
+void		destroy_texture(t_game *game, t_texture *tex);
+void		destroy_gun_textures(t_game *game);
+void		destroy_all_textures(t_game *game);
 
 /*	BONUS 	*/
 

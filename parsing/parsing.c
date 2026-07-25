@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:51:07 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 17:55:00 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/24 17:37:09 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parsing(t_game *game, char **av, int ac, t_malloc **lst_malloc)
 		return (false);
 	if (!init_parsing(av, ac, &game->parsing, lst_malloc))
 		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
-	if (!check_the_mapfile_format(&game->parsing))
+	if (!check_the_mapfile_format(&game->parsing, lst_malloc))
 		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
 	if (!flood_fill(&game->parsing, lst_malloc))
 		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);

@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:50:15 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/27 18:02:45 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/24 16:03:12 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ int	main(int ac, char **av)
 		return (clean_mlx_and_malloc_lst(&game, &lst_malloc), 1);
 	mlx_loop_hook(game.mlx.mlx, (void *)game_loop, &game);
 	mlx_loop(game.mlx.mlx);
-	clean_mlx_and_malloc_lst(&game, &lst_malloc);
-	return (0);
+	return (clean_mlx_and_malloc_lst(&game, &lst_malloc), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:52:03 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 18:15:10 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/24 16:08:23 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,13 @@ static bool	init_int_value(int ac, char **av, t_parsing *parsing,
 	parsing->lst_malloc = lst_malloc;
 	parsing->fd_map = open (av[1], O_RDONLY);
 	if (parsing->fd_map < 0)
-	{
-		perror ("Error to open the map:");
-		return (false);
-	}
+		return (perror ("Error to open the map:"), false);
 	parsing->nb_lines = count_lines(av[1], lst_malloc);
 	if (parsing->nb_lines <= 0)
 	{
 		printf("Error the file is empty or can't be read\n");
 		close(parsing->fd_map);
-		parsing->fd_map = -1;
-		return (false);
+		return (parsing->fd_map = -1, false);
 	}
 	return (true);
 }

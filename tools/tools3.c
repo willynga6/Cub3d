@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:50:32 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 20:41:22 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/25 10:14:56 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,23 @@ char	**duplicate_maps(t_parsing *parsing, t_malloc **lst_malloc)
 }
 
 /*	================================================================	*/
+
+char	*get_word(char *str, t_malloc **lst_malloc)
+{
+	int		i;
+	int		start;
+	char	*first_word;
+
+	if (!str || !lst_malloc)
+		return (NULL);
+	start = 0;
+	while (str[start] && is_space(str[start]))
+		start++;
+	i = 0;
+	while (str[start + i] && !is_space(str[start + i]))
+		i++;
+	first_word = ft_strndup(lst_malloc, str + start, i);
+	if (!first_word)
+		return (NULL);
+	return (first_word);
+}
