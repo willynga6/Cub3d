@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:53:12 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 18:09:45 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/25 10:03:53 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	no_case(t_parsing *parsing, char *line, int *i)
 
 	if (!parsing || !line || !i)
 		return (false);
-	if (!am_i_in_texture_part(parsing, i))
+	if (!am_i_in_texture_part(parsing, i, parsing->lst_malloc))
 		return (false);
 	if (is_no_texture_part(line))
 	{
@@ -50,7 +50,7 @@ bool	so_case(t_parsing *parsing, char *line, int *i)
 
 	if (!parsing || !line || !i)
 		return (false);
-	if (!am_i_in_texture_part(parsing, i))
+	if (!am_i_in_texture_part(parsing, i, parsing->lst_malloc))
 		return (false);
 	if (is_so_texture_part(line))
 	{
@@ -78,7 +78,7 @@ bool	we_case(t_parsing *parsing, char *line, int *i)
 
 	if (!parsing || !line || !i)
 		return (false);
-	if (!am_i_in_texture_part(parsing, i))
+	if (!am_i_in_texture_part(parsing, i, parsing->lst_malloc))
 		return (false);
 	if (is_we_texture_part(line))
 	{
@@ -106,7 +106,7 @@ bool	ea_case(t_parsing *parsing, char *line, int *i)
 
 	if (!parsing || !line || !i)
 		return (false);
-	if (!am_i_in_texture_part(parsing, i))
+	if (!am_i_in_texture_part(parsing, i, parsing->lst_malloc))
 		return (false);
 	if (is_ea_texture_part(line))
 	{
@@ -130,8 +130,8 @@ bool	ea_case(t_parsing *parsing, char *line, int *i)
 
 bool	texture_case(t_parsing *parsing, int *i)
 {
-	while (parsing->maps[*i] && am_i_in_texture_part(parsing, i)
-		&& parsing->am_i_in_texture)
+	while (parsing->maps[*i] && am_i_in_texture_part(parsing, i,
+			parsing->lst_malloc) && parsing->am_i_in_texture)
 	{
 		if (!no_case(parsing, parsing->maps[*i], i))
 			return (false);

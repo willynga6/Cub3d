@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 13:53:34 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 18:01:02 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/25 10:14:24 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,13 @@ void	jump_empty_line(t_parsing *parsing, int *i)
 
 /*	================================================================	*/
 
-bool	am_i_in_texture_part(t_parsing *parsing, int *i)
+bool	am_i_in_texture_part(t_parsing *parsing, int *i, t_malloc **lst_malloc)
 {
-	char	first_two_char[3];
+	char	*first_word;
 
-	first_two_char[0] = parsing->maps[*i][0];
-	first_two_char[1] = parsing->maps[*i][1];
-	first_two_char[2] = '\0';
-	if (!ft_strcmp(first_two_char, "NO") || !ft_strcmp(first_two_char, "SO")
-		|| !ft_strcmp(first_two_char, "WE") || !ft_strcmp(first_two_char, "EA"))
+	first_word = get_word (parsing->maps[*i], lst_malloc);
+	if (!ft_strcmp(first_word, "NO") || !ft_strcmp(first_word, "SO")
+		|| !ft_strcmp(first_word, "WE") || !ft_strcmp(first_word, "EA"))
 	{
 		parsing->am_i_in_texture = true;
 		return (true);

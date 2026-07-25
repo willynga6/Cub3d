@@ -6,14 +6,15 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 13:02:19 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 17:33:44 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/25 10:03:34 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "structure.h"
 
-static bool	check_the_mapfile_format_bonus(t_parsing *parsing)
+static bool	check_the_mapfile_format_bonus(t_parsing *parsing,
+		t_malloc **lst_malloc)
 {
 	int	i;
 
@@ -23,7 +24,7 @@ static bool	check_the_mapfile_format_bonus(t_parsing *parsing)
 	jump_empty_line(parsing, &i);
 	if (is_empty_file(parsing))
 		return (required_format(), false);
-	if (!am_i_in_texture_part(parsing, &i))
+	if (!am_i_in_texture_part(parsing, &i, lst_malloc))
 		return (required_format(), false);
 	if (!texture_case(parsing, &i))
 		return (false);
@@ -55,7 +56,7 @@ bool	parsing_bonus(t_game *game, char **av, int ac, t_malloc **lst_malloc)
 		return (false);
 	if (!init_parsing(av, ac, &game->parsing, lst_malloc))
 		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
-	if (!check_the_mapfile_format_bonus(&game->parsing))
+	if (!check_the_mapfile_format_bonus(&game->parsing, lst_malloc))
 		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);
 	if (!flood_fill(&game->parsing, lst_malloc))
 		return (clean_and_close(lst_malloc, game->parsing.fd_map), false);

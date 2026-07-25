@@ -6,7 +6,7 @@
 /*   By: wngambi <wngambi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 18:01:38 by wngambi           #+#    #+#             */
-/*   Updated: 2026/06/26 20:41:22 by wngambi          ###   ########.fr       */
+/*   Updated: 2026/07/25 10:01:54 by wngambi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ static bool	mandatory_not_door(char **maps)
 
 /*  =============================================================== */
 
-static bool	check_mapfile_firt_part(t_parsing *parsing, int *i)
+static bool	check_mapfile_firt_part(t_parsing *parsing, int *i,
+	t_malloc *lst_malloc)
 {
 	if (!mandatory_not_door (parsing->maps))
 		return (false);
 	jump_empty_line(parsing, i);
 	if (is_empty_file(parsing))
 		return (required_format(), false);
-	if (!am_i_in_texture_part(parsing, i))
+	if (!am_i_in_texture_part(parsing, i, lst_malloc))
 		return (required_format(), false);
 	if (!texture_case(parsing, i))
 		return (false);
@@ -62,14 +63,14 @@ static bool	check_mapfile_firt_part(t_parsing *parsing, int *i)
 
 /*  =============================================================== */
 
-bool	check_the_mapfile_format(t_parsing *parsing)
+bool	check_the_mapfile_format(t_parsing *parsing, t_malloc **lst_malloc)
 {
 	int	i;
 
 	i = 0;
 	if (!parsing || !parsing->maps)
 		return (print_error("Error: bad structure adress"), false);
-	if (!check_mapfile_firt_part (parsing, &i))
+	if (!check_mapfile_firt_part (parsing, &i, lst_malloc))
 		return (false);
 	jump_empty_line(parsing, &i);
 	if (!am_i_in_color_part(parsing, &i))

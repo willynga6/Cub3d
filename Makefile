@@ -33,7 +33,6 @@ SRCS = 	$(GAMEDIR)/window.c \
 		$(RAYCASTDIR)/raycast1.c \
 		$(RAYCASTDIR)/raycast2.c \
 		$(RAYCASTDIR)/raycast3.c \
-		$(RAYCASTDIR)/search_wall.c \
 		$(GAMEDIR)/door_check.c \
 		$(GAMEDIR)/texture.c \
 		$(GAMEDIR)/texture2.c \
@@ -69,6 +68,7 @@ SRCS = 	$(GAMEDIR)/window.c \
 		$(GNL)/get_next_line_utils.c \
 		$(CLEANDIR)/malloc.c \
 		$(CLEANDIR)/clean.c \
+		$(CLEANDIR)/clean2.c \
 		$(BONUSDIR)/gun_texture.c \
 		$(BONUSDIR)/gun_texture2.c \
 		$(BONUSDIR)/gun.c \
